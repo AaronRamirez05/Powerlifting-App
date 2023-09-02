@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/screens/home_screen.dart';
 import 'package:powerlifting_app/screens/signupinfo.dart';
@@ -98,14 +99,7 @@ class _LoginScreen extends State<LoginScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: (!interacts)
-                            ? null
-                            : () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => homeScreen()));
-                              },
+                        onPressed: (!interacts) ? null : signIn,
                         child: Text(
                           'Login',
                           style: TextStyle(
@@ -139,5 +133,10 @@ class _LoginScreen extends State<LoginScreen> {
             ),
           )),
         ));
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailinData.text.trim(), password: passinData.text.trim());
   }
 }
