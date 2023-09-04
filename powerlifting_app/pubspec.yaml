@@ -40,6 +40,9 @@ dependencies:
   cloud_firestore: ^3.1.5
   firebase_core: ^1.10.2
 
+  #Validate Email
+  email_validator: ^2.1.16
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
