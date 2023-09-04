@@ -3,6 +3,10 @@ import 'package:powerlifting_app/screens/home_screen.dart';
 import 'package:powerlifting_app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:powerlifting_app/screens/auth_page.dart';
+import 'package:powerlifting_app/utils/Utils.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: Utils.messengerKey,
+      navigatorKey: navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -126,10 +132,14 @@ class MainPage extends StatelessWidget {
           body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Something went wrong!'));
+          } else if (snapshot.hasData) {
             return homeScreen();
           } else {
-            return LoginScreen();
+            return AuthPage();
           }
         },
       ));

@@ -1,9 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:powerlifting_app/main.dart';
 import 'package:powerlifting_app/screens/home_screen.dart';
 import 'package:powerlifting_app/screens/signupinfo.dart';
+import 'package:powerlifting_app/utils/Utils.dart';
 
 class LoginScreen extends StatefulWidget {
+  final VoidCallback onClickedSignUp;
+
+  const LoginScreen({
+    Key? key,
+    required this.onClickedSignUp,
+  }) : super(key: key);
+
   @override
   _LoginScreen createState() => _LoginScreen();
 }
@@ -14,6 +25,7 @@ class _LoginScreen extends State<LoginScreen> {
   String emailtext = '';
   String passtext = '';
   bool interacts = false;
+  bool Obsecure = true;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +88,7 @@ class _LoginScreen extends State<LoginScreen> {
                       style: TextStyle(fontSize: 14, fontFamily: 'Open'),
                       key: Key("passin-field"),
                       controller: passinData,
+                      obscureText: (Obsecure) ? true : false,
                       onChanged: (value) {
                         setState(() {
                           if (passinData.text != "" && emailinData.text != "")
@@ -85,9 +98,21 @@ class _LoginScreen extends State<LoginScreen> {
                         });
                       },
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock, color: Colors.black),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16))),
+                        prefixIcon: Icon(Icons.lock, color: Colors.black),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              Obsecure = !Obsecure;
+                            });
+                          },
+                          icon: (Obsecure)
+                              ? Icon(Icons.vpn_key)
+                              : Icon(Icons.vpn_key_outlined),
+                          color: Colors.black,
+                        ),
+                      ),
                     )),
                 SizedBox(
                   height: 35,
@@ -107,28 +132,25 @@ class _LoginScreen extends State<LoginScreen> {
                               fontFamily: 'Open'),
                         ))),
                 SizedBox(
-                  height: 5,
+                  height: 50,
                 ),
-                Container(
-                    height: 35,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignupInfo()));
-                        },
-                        child: Text(
-                          'Signup',
+                RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 15,
+                            fontFamily: 'Open'),
+                        text: 'No account? ',
+                        children: [
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.onClickedSignUp,
+                          text: 'Sign Up',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Open',
-                          ),
-                        ))),
+                              decoration: TextDecoration.underline,
+                              color: Colors.white,
+                              fontFamily: 'Open'))
+                    ]))
               ],
             ),
           )),
@@ -136,7 +158,20 @@ class _LoginScreen extends State<LoginScreen> {
   }
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailinData.text.trim(), password: passinData.text.trim());
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(child: CircularProgressIndicator()));
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailinData.text.trim(), password: passinData.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+
+      Utils.showSnackBar(e.message);
+    }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
