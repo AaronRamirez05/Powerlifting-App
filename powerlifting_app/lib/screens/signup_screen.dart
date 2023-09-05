@@ -28,7 +28,8 @@ class _SignUpScreen extends State<SignUpScreen> {
   String emailtext = '';
   String passtext = '';
   bool interacts = false;
-  bool Obsecure = true;
+  bool pass1Obsecure = true;
+  bool pass2Obsecure = true;
   bool passmatch = false;
   final formKey = GlobalKey<FormState>();
 
@@ -127,7 +128,7 @@ class _SignUpScreen extends State<SignUpScreen> {
                                   TextStyle(fontSize: 14, fontFamily: 'Open'),
                               key: Key("passin-field"),
                               controller: passinData,
-                              obscureText: (Obsecure) ? true : false,
+                              obscureText: (pass1Obsecure) ? true : false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: (value) =>
@@ -159,10 +160,10 @@ class _SignUpScreen extends State<SignUpScreen> {
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      Obsecure = !Obsecure;
+                                      pass1Obsecure = !pass1Obsecure;
                                     });
                                   },
-                                  icon: (Obsecure)
+                                  icon: (pass1Obsecure)
                                       ? Icon(Icons.vpn_key)
                                       : Icon(Icons.vpn_key_outlined),
                                   color: Colors.black,
@@ -196,7 +197,7 @@ class _SignUpScreen extends State<SignUpScreen> {
                                   TextStyle(fontSize: 14, fontFamily: 'Open'),
                               key: Key("confirm-passin-field"),
                               controller: confirmpassinData,
-                              obscureText: (Obsecure) ? true : false,
+                              obscureText: (pass2Obsecure) ? true : false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: (value) =>
@@ -228,10 +229,10 @@ class _SignUpScreen extends State<SignUpScreen> {
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      Obsecure = !Obsecure;
+                                      pass2Obsecure = !pass2Obsecure;
                                     });
                                   },
-                                  icon: (Obsecure)
+                                  icon: (pass2Obsecure)
                                       ? Icon(Icons.vpn_key)
                                       : Icon(Icons.vpn_key_outlined),
                                   color: Colors.black,
