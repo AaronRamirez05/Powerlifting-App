@@ -24,16 +24,19 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreen extends State<SignUpScreen> {
   TextEditingController emailinData = TextEditingController();
   TextEditingController passinData = TextEditingController();
+  TextEditingController confirmpassinData = TextEditingController();
   String emailtext = '';
   String passtext = '';
   bool interacts = false;
   bool Obsecure = true;
+  bool passmatch = false;
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     emailinData.dispose();
     passinData.dispose();
+    confirmpassinData.dispose();
 
     super.dispose();
   }
@@ -50,13 +53,15 @@ class _SignUpScreen extends State<SignUpScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          child: Text(
-                            "Email",
-                            style: TextStyle(
-                                color: Colors.red, fontFamily: 'Open'),
-                          ),
-                        ),
+                        Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              child: Text(
+                                "             Email",
+                                style: TextStyle(
+                                    color: Colors.red, fontFamily: 'Open'),
+                              ),
+                            )),
                         SizedBox(
                           height: 5,
                         ),
@@ -95,13 +100,18 @@ class _SignUpScreen extends State<SignUpScreen> {
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(16))),
                             )),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
+                            child: Align(
+                          alignment: Alignment.centerLeft,
                           child: Text(
-                            "Password",
+                            "             Password",
                             style: TextStyle(
                                 color: Colors.red, fontFamily: 'Open'),
                           ),
-                        ),
+                        )),
                         SizedBox(
                           height: 5,
                         ),
@@ -131,6 +141,81 @@ class _SignUpScreen extends State<SignUpScreen> {
                                     interacts = true;
                                   else
                                     interacts = false;
+
+                                  if (passinData.text != confirmpassinData.text)
+                                    passmatch = false;
+                                  else {
+                                    passmatch = true;
+                                  }
+                                });
+                              },
+                              decoration: InputDecoration(
+                                errorStyle: TextStyle(
+                                    color: Colors.white, fontFamily: 'Open'),
+                                prefixIcon:
+                                    Icon(Icons.lock, color: Colors.black),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(16)),
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      Obsecure = !Obsecure;
+                                    });
+                                  },
+                                  icon: (Obsecure)
+                                      ? Icon(Icons.vpn_key)
+                                      : Icon(Icons.vpn_key_outlined),
+                                  color: Colors.black,
+                                ),
+                              ),
+                            )),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "             Confirm Password",
+                            style: TextStyle(
+                                color: Colors.red, fontFamily: 'Open'),
+                          ),
+                        )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            height: 46,
+                            width: 300,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16))),
+                            child: TextFormField(
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Open'),
+                              key: Key("confirm-passin-field"),
+                              controller: confirmpassinData,
+                              obscureText: (Obsecure) ? true : false,
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              validator: (value) =>
+                                  value != null && value.length < 6
+                                      ? 'Enter min. 6 characters'
+                                      : null,
+                              onChanged: (value) {
+                                setState(() {
+                                  if (passinData.text != "" &&
+                                      emailinData.text != "")
+                                    interacts = true;
+                                  else
+                                    interacts = false;
+
+                                  if (passinData.text != confirmpassinData.text)
+                                    passmatch = false;
+                                  else {
+                                    passmatch = true;
+                                  }
                                 });
                               },
                               decoration: InputDecoration(
@@ -164,11 +249,12 @@ class _SignUpScreen extends State<SignUpScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16))),
                             child: TextButton(
-                                onPressed: (!interacts) ? null : signUp,
+                                onPressed:
+                                    (!interacts && !passmatch) ? null : signUp,
                                 child: Text(
                                   'Sign Up',
                                   style: TextStyle(
-                                      color: (interacts)
+                                      color: (interacts && passmatch)
                                           ? Colors.white
                                           : Colors.black,
                                       fontFamily: 'Open'),

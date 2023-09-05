@@ -41,13 +41,13 @@ class _ForgotScreen extends State<ForgotScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.lock_outline, color: Colors.red, size: 100),
-                        SizedBox(height: 80),
+                        SizedBox(height: 50),
                         Text("Password Change Request",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Open',
                                 fontSize: 20)),
-                        SizedBox(height: 20),
+                        SizedBox(height: 15),
                         Container(
                             height: 46,
                             width: 300,
