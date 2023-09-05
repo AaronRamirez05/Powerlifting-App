@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/main.dart';
+import 'package:powerlifting_app/screens/forgotpassword_screen.dart';
 import 'package:powerlifting_app/screens/home_screen.dart';
 import 'package:powerlifting_app/screens/signupinfo.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
@@ -37,12 +38,14 @@ class _LoginScreen extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  child: Text(
-                    "Email",
-                    style: TextStyle(color: Colors.red, fontFamily: 'Open'),
-                  ),
-                ),
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      child: Text(
+                        "             Email",
+                        style: TextStyle(color: Colors.red, fontFamily: 'Open'),
+                      ),
+                    )),
                 SizedBox(
                   height: 5,
                 ),
@@ -69,12 +72,17 @@ class _LoginScreen extends State<LoginScreen> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16))),
                     )),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
+                    child: Align(
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    "Password",
+                    "             Password",
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
-                ),
+                )),
                 SizedBox(
                   height: 5,
                 ),
@@ -131,8 +139,20 @@ class _LoginScreen extends State<LoginScreen> {
                               color: (interacts) ? Colors.white : Colors.black,
                               fontFamily: 'Open'),
                         ))),
+                SizedBox(height: 65),
+                GestureDetector(
+                    child: Text('Forgot Password?',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.white,
+                            fontFamily: 'Open',
+                            fontSize: 15)),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ForgotScreen()));
+                    }),
                 SizedBox(
-                  height: 50,
+                  height: 5,
                 ),
                 RichText(
                     text: TextSpan(
