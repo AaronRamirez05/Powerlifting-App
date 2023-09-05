@@ -97,7 +97,7 @@ class _VerifyEmailPage extends State<VerifyEmailPage> {
                   SizedBox(
                       width: 250,
                       height: 50,
-                      child: TextButton(
+                      child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size.fromHeight(50)),
                         child: Text('Cancel',
