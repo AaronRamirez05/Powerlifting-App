@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:powerlifting_app/screens/auth_page.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
+import 'package:powerlifting_app/screens/verify_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -137,7 +138,7 @@ class MainPage extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text('Something went wrong!'));
           } else if (snapshot.hasData) {
-            return homeScreen();
+            return VerifyEmailPage();
           } else {
             return AuthPage();
           }
