@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:powerlifting_app/screens/home_screen.dart';
-import 'package:powerlifting_app/screens/login_screen.dart';
+import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
+import 'package:powerlifting_app/screens/Login Screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:powerlifting_app/screens/auth_page.dart';
+import 'package:powerlifting_app/screens/Login Screen/auth_page.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
-import 'package:powerlifting_app/screens/verify_page.dart';
+import 'package:powerlifting_app/screens/Login Screen/verify_page.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 

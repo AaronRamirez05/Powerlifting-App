@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:powerlifting_app/main.dart';
-import 'package:powerlifting_app/screens/login_screen.dart';
+import 'package:powerlifting_app/screens/Login Screen/login_screen.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 
 class ForgotScreen extends StatefulWidget {

@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/main.dart';
-import 'package:powerlifting_app/screens/forgotpassword_screen.dart';
-import 'package:powerlifting_app/screens/home_screen.dart';
-import 'package:powerlifting_app/screens/signupinfo.dart';
+import 'package:powerlifting_app/screens/Login Screen/login_screen.dart';
+import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
+import 'package:powerlifting_app/screens/Login Screen/forgotpassword_screen.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:powerlifting_app/screens/home_screen.dart';
-import 'package:powerlifting_app/screens/login_screen.dart';
-import 'package:powerlifting_app/screens/signup_screen.dart';
+import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
+import 'package:powerlifting_app/screens/Login Screen/login_screen.dart';
+import 'package:powerlifting_app/screens/Login Screen/signup_screen.dart';
 
 class AuthPage extends StatefulWidget {
   @override

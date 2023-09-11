@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:powerlifting_app/screens/home_screen.dart';
+import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 import 'dart:async';
 
