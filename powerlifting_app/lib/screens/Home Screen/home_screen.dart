@@ -1,6 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:powerlifting_app/screens/tutorials_screen.dart';
+import 'package:powerlifting_app/screens/Home Screen/tutorials_screen.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/achievements_screens.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/programs_screen.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/recordsessions_screen.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/weightconverter_screen.dart';
+import 'package:powerlifting_app/screens/Home Screen/myaccount_screen.dart';
 
 class homeScreen extends StatefulWidget {
   @override
@@ -44,7 +49,8 @@ class _home extends State<homeScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
                         onPressed: () {
-                          //Navigator.push(context, MaterialPageRoute(builder: (context) => tutorials_screen()));
+                          Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => TutorialScreen()));
                         },
                         child: Text(
                           'Tutorials',
@@ -59,7 +65,8 @@ class _home extends State<homeScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProgramScreen()));},
                         child: Text(
                           'Programs',
                           style: TextStyle(
@@ -73,7 +80,8 @@ class _home extends State<homeScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => RecordScreen()));},
                         child: Text(
                           'Record Sessions',
                           style: TextStyle(
@@ -87,9 +95,10 @@ class _home extends State<homeScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ConvertScreen()));},
                         child: Text(
-                          'Weight Convertor',
+                          'Weight Converter',
                           style: TextStyle(
                               color: Colors.white, fontFamily: 'Open'),
                         ))),
@@ -101,7 +110,8 @@ class _home extends State<homeScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AccountScreen()));},
                         child: Text(
                           'My Account',
                           style: TextStyle(
@@ -115,7 +125,8 @@ class _home extends State<homeScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AchieveScreen()));},
                         child: Text(
                           'Achievements',
                           style: TextStyle(
