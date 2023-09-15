@@ -26,7 +26,263 @@ class _home extends State<homeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Text("Hello, Aaron! ", style: TextStyle(fontFamily: 'Open',fontSize: 25,color: Colors.white),textAlign: TextAlign.center,),
+                SizedBox(height: 40),
                 Text(user.email!, style: TextStyle(color: Colors.red)),
+                Container(
+                    height: 105,
+                    width: 300,
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        border: Border.all(color: Colors.red, width: 3)),
+                    child: Column(
+                      children: <Widget>[
+                        IntrinsicHeight(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(height: 5),
+                                  Text('Squat',
+                                      style: TextStyle(
+                                          fontFamily: 'Open',
+                                          color: Colors.white,
+                                          fontSize: 20)),
+                                  SizedBox(height: 5),
+                                  Text('440.925',
+                                      style: TextStyle(
+                                          fontFamily: 'Open',
+                                          color: Colors.red,
+                                          fontSize: 20)),
+                                  SizedBox(height: 5),
+                                  Icon(
+                                    Icons.fitness_center,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 10,),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 0.0),
+                                child: Container(
+                                  height: 99.0,
+                                  width: 3,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              SizedBox(width: 10,),
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(height: 5),
+                                  Text('Bench',
+                                      style: TextStyle(
+                                          fontFamily: 'Open',
+                                          color: Colors.white,
+                                          fontSize: 20)),
+                                  SizedBox(height: 5),
+                                  Text('300',
+                                      style: TextStyle(
+                                          fontFamily: 'Open',
+                                          color: Colors.red,
+                                          fontSize: 20)),
+                                  SizedBox(height: 5),
+                                  Icon(
+                                    Icons.fitness_center,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(width: 10,),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 0.0),
+                                child: Container(
+                                  height: 99.0,
+                                  width: 3,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              SizedBox(width: 10,),
+                              Column(
+                                children: <Widget>[
+                                  SizedBox(height: 5),
+                                  Text('Deadlift',
+                                      style: TextStyle(
+                                          fontFamily: 'Open',
+                                          color: Colors.white,
+                                          fontSize: 20)),
+                                  SizedBox(height: 5),
+                                  Text('500 LB',
+                                      style: TextStyle(
+                                          fontFamily: 'Open',
+                                          color: Colors.red,
+                                          fontSize: 20)),
+                                  SizedBox(height: 5),
+                                  Icon(
+                                    Icons.fitness_center,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
+                SizedBox(height: 60),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(35))),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => TutorialScreen()));
+                            },
+                            icon: const Icon(Icons.book),
+                            iconSize: 40)),
+                    SizedBox(width: 50),
+                    Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(35))),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => ProgramScreen()));
+                            },
+                            icon: Icon(Icons.computer),
+                            iconSize: 40)),
+                    SizedBox(width: 50),
+                    Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(35))),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => RecordScreen()));
+                          },
+                          icon: Icon(Icons.camera_alt),
+                          iconSize: 40,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 35),
+                    Text(
+                      'Tutorials',
+                      style: TextStyle(fontFamily: 'open', color: Colors.white),
+                    ),
+                    SizedBox(width: 48),
+                    Text(
+                      'Programs',
+                      style: TextStyle(fontFamily: 'open', color: Colors.white),
+                    ),
+                    SizedBox(width: 50),
+                    Text(
+                      'Record',
+                      style: TextStyle(fontFamily: 'open', color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(35))),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ConvertScreen()));
+                          },
+                          icon: Icon(Icons.fitness_center),
+                          iconSize: 40,
+                        )),
+                    SizedBox(width: 50),
+                    Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(35))),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AccountScreen()));
+                          },
+                          icon: Icon(Icons.account_box),
+                          iconSize: 40,
+                        )),
+                    SizedBox(width: 50),
+                    Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(35))),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AchieveScreen()));
+                          },
+                          icon: Icon(Icons.emoji_events),
+                          iconSize: 40,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 35),
+                    Text(
+                      '  Weight\nConverter',
+                      style: TextStyle(fontFamily: 'open', color: Colors.white),
+                    ),
+                    SizedBox(width: 44),
+                    Text(
+                      'Account\n',
+                      style: TextStyle(fontFamily: 'open', color: Colors.white),
+                    ),
+                    SizedBox(width: 60),
+                    Text(
+                      'Goals\n',
+                      style: TextStyle(fontFamily: 'open', color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
                 Container(
                     height: 35,
                     width: 100,
@@ -37,103 +293,11 @@ class _home extends State<homeScreen> {
                         onPressed: () => FirebaseAuth.instance.signOut(),
                         child: Text(
                           'Sign Out',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Open'),
-                        ))),
-                        SizedBox(height: 150),
-                Container(
-                    height: 35,
-                    width: 95,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => TutorialScreen()));
-                        },
-                        child: Text(
-                          'Tutorials',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Open'),
-                        ))),
-                        SizedBox(height: 25),
-                  Container(
-                    height: 35,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ProgramScreen()));},
-                        child: Text(
-                          'Programs',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Open'),
-                        ))),
-                        SizedBox(height: 25),
-                  Container(
-                    height: 35,
-                    width: 140,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => RecordScreen()));},
-                        child: Text(
-                          'Record Sessions',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Open'),
-                        ))),
-                        SizedBox(height: 25),
-                  Container(
-                    height: 35,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ConvertScreen()));},
-                        child: Text(
-                          'Weight Converter',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Open'),
-                        ))),
-                        SizedBox(height: 25),
-                  Container(
-                    height: 35,
-                    width: 115,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AccountScreen()));},
-                        child: Text(
-                          'My Account',
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'Open'),
-                        ))),
-                        SizedBox(height: 25),
-                  Container(
-                    height: 35,
-                    width: 130,
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: TextButton(
-                        onPressed: () {Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AchieveScreen()));},
-                        child: Text(
-                          'Achievements',
+                          key: Key('Sign-Out'),
                           style: TextStyle(
                               color: Colors.white, fontFamily: 'Open'),
                         ))),
               ],
-              
             ),
           )),
         ));

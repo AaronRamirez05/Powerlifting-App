@@ -44,6 +44,19 @@ class _SignUpScreen extends State<SignUpScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.black,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.red,
+            iconSize: 35,
+            key: Key('back-cups'),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MainPage()));
+            },
+          ),
+        ),
         backgroundColor: Colors.black,
         body: Container(
           child: Center(
