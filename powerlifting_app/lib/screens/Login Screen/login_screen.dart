@@ -28,7 +28,7 @@ class _LoginScreen extends State<LoginScreen> {
   bool interacts = false;
   bool Obsecure = true;
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
         backgroundColor: Colors.black,
         body: Container(
@@ -132,9 +132,11 @@ class _LoginScreen extends State<LoginScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
+                        key: Key('login'),
                         onPressed: (!interacts) ? null : signIn,
                         child: Text(
                           'Login',
+                          key: Key('logintxt'),
                           style: TextStyle(
                               color: (interacts) ? Colors.white : Colors.black,
                               fontFamily: 'Open'),
@@ -142,6 +144,7 @@ class _LoginScreen extends State<LoginScreen> {
                 SizedBox(height: 65),
                 GestureDetector(
                     child: Text('Forgot Password?',
+                        key: Key('Forgot'),
                         style: TextStyle(
                             decoration: TextDecoration.underline,
                             color: Colors.white,
@@ -154,7 +157,9 @@ class _LoginScreen extends State<LoginScreen> {
                 SizedBox(
                   height: 5,
                 ),
+                
                 RichText(
+                  key: const Key('signup'),
                     text: TextSpan(
                         style: TextStyle(
                             color: Colors.red,
@@ -169,7 +174,7 @@ class _LoginScreen extends State<LoginScreen> {
                           style: TextStyle(
                               decoration: TextDecoration.underline,
                               color: Colors.white,
-                              fontFamily: 'Open'))
+                              fontFamily: 'Open')),
                     ]))
               ],
             ),

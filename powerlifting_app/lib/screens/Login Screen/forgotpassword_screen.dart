@@ -94,9 +94,11 @@ class _ForgotScreen extends State<ForgotScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16))),
                             child: TextButton(
+                              key: Key('Reset'),
                                 onPressed: (!interacts) ? null : resetPassword,
                                 child: Text(
                                   'Reset Password',
+                                  key: Key('resetbutton'),
                                   style: TextStyle(
                                       color: (!interacts)
                                           ? Colors.black
