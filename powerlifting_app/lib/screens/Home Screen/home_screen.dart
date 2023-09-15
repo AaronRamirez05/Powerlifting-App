@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:powerlifting_app/main.dart';
 import 'package:powerlifting_app/screens/Home Screen/tutorials_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/achievements_screens.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/programs_screen.dart';
@@ -26,7 +27,12 @@ class _home extends State<homeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("Hello, Aaron! ", style: TextStyle(fontFamily: 'Open',fontSize: 25,color: Colors.white),textAlign: TextAlign.center,),
+                Text(
+                  "Hello, Aaron! ",
+                  style: TextStyle(
+                      fontFamily: 'Open', fontSize: 25, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
                 SizedBox(height: 40),
                 Text(user.email!, style: TextStyle(color: Colors.red)),
                 Container(
@@ -66,7 +72,9 @@ class _home extends State<homeScreen> {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 0.0),
                                 child: Container(
@@ -75,7 +83,9 @@ class _home extends State<homeScreen> {
                                   color: Colors.red,
                                 ),
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Column(
                                 children: <Widget>[
                                   SizedBox(height: 5),
@@ -97,7 +107,9 @@ class _home extends State<homeScreen> {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 0.0),
                                 child: Container(
@@ -106,7 +118,9 @@ class _home extends State<homeScreen> {
                                   color: Colors.red,
                                 ),
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Column(
                                 children: <Widget>[
                                   SizedBox(height: 5),
@@ -290,7 +304,11 @@ class _home extends State<homeScreen> {
                         color: Colors.red,
                         borderRadius: BorderRadius.all(Radius.circular(16))),
                     child: TextButton(
-                        onPressed: () => FirebaseAuth.instance.signOut(),
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: ((context) => MainPage())));
+                        },
                         child: Text(
                           'Sign Out',
                           key: Key('Sign-Out'),
