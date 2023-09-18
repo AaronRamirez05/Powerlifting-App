@@ -34,6 +34,7 @@ class _Program extends State<ProgramScreen> {
                 Container(
                   child: Text(
                     "Programs",
+                    key: Key('programcheck'),
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),

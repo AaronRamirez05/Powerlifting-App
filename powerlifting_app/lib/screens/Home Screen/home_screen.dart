@@ -155,6 +155,7 @@ class _home extends State<homeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
+                      key: Key('tut'),
                         height: 60,
                         width: 60,
                         decoration: BoxDecoration(
@@ -177,6 +178,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
+                          key:Key("program"),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ProgramScreen()));
@@ -192,6 +194,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
+                          key:Key('recordbtn'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => RecordScreen()));
@@ -233,6 +236,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
+                          key: Key('weightconvertbtn'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => ConvertScreen()));
@@ -249,6 +253,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
+                          key:Key('Accountbtn'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => AccountScreen()));
@@ -265,6 +270,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
+                          key: Key('achievebtn'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => AchieveScreen()));

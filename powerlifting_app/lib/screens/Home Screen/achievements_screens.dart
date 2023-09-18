@@ -34,6 +34,7 @@ class _Achieve extends State<AchieveScreen> {
                 Container(
                   child: Text(
                     "Achievements",
+                    key: Key('achievecheck'),
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),

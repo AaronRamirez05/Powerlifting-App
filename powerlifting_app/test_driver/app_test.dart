@@ -33,29 +33,79 @@ void main() {
       await driver.tap(emailbtn);
       await driver.enterText('aaronramirez879@yahoo.com');
       await driver.tap(passbtn);
-      await driver.enterText('Test123456!');
+      await driver.enterText('Test12345!');
       await driver.tap(loginbtn);
 
       final signoutbtn = find.byValueKey('Sign-Out');
      expect(await driver.getText(signoutbtn), 'Sign Out');
-      await driver.tap(signoutbtn);
     });
 
-    test("Forgot Password successful",() async{
-      final Forgotbtn = find.byValueKey('Forgot');
-      await driver.tap(Forgotbtn);
-      final emailbtn = find.byValueKey('emailin-field');
-      await driver.tap(emailbtn);
-      await driver.enterText('aaronramirez879@yahoo.com');
+    test("tutorial screen happy paths",() async{
+      final tutorialbtn = find.byValueKey('tut');
+      await driver.tap(tutorialbtn);
 
-      final resetbtn = find.byValueKey('Reset');
-      await driver.tap(resetbtn);
+      final checkpage = find.byValueKey('tutcheck');
 
-     
-     final loginbtn = find.byValueKey('logintxt');
+      expect(await driver.getText(checkpage),'Tutorial Page');
+      final backbtn = find.byValueKey('back-cups');
+     await driver.tap(backbtn);
+    });
 
-     expect(await driver.getText(loginbtn), 'Login');
-      
+    test("program screen happy paths",() async{
+      final programbtn = find.byValueKey('program');
+      await driver.tap(programbtn);
+
+      final checkpage = find.byValueKey('programcheck');
+
+      expect(await driver.getText(checkpage),'Programs');
+      final backbtn = find.byValueKey('back-cups');
+     await driver.tap(backbtn);
+    });
+
+    test("record screen happy paths",() async{
+      final recordbtn = find.byValueKey('recordbtn');
+      await driver.tap(recordbtn);
+
+      final checkpage = find.byValueKey('recordcheck');
+
+      expect(await driver.getText(checkpage),'Record Sessions');
+      final backbtn = find.byValueKey('back-cups');
+     await driver.tap(backbtn);
+    });
+
+    test("convert screen happy paths",() async{
+      final convertbtn = find.byValueKey('weightconvertbtn');
+      await driver.tap(convertbtn);
+
+      final checkpage = find.byValueKey('convertcheck');
+
+      expect(await driver.getText(checkpage),'Weight Converter');
+      final backbtn = find.byValueKey('back-cups');
+     await driver.tap(backbtn);
+    });
+
+    test("account screen happy paths",() async{
+      final accountbtn = find.byValueKey('Accountbtn');
+      await driver.tap(accountbtn);
+
+      final checkpage = find.byValueKey('Accountcheck');
+
+      expect(await driver.getText(checkpage),'My Account');
+      final backbtn = find.byValueKey('back-cups');
+     await driver.tap(backbtn);
+    });
+
+    test("Achievements screen happy paths",() async{
+      final accountbtn = find.byValueKey('achievebtn');
+      await driver.tap(accountbtn);
+
+      final checkpage = find.byValueKey('achievecheck');
+
+      expect(await driver.getText(checkpage),'Achievements');
+      final backbtn = find.byValueKey('back-cups');
+     await driver.tap(backbtn);
+     final signoutbtn = find.byValueKey('Sign-Out');
+     await driver.tap(signoutbtn);
     });
 
     test("Forgot Password successful",() async{

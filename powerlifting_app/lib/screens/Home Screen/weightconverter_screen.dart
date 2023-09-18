@@ -34,6 +34,7 @@ class _Convert extends State<ConvertScreen> {
                 Container(
                   child: Text(
                     "Weight Converter",
+                    key:Key('convertcheck'),
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),

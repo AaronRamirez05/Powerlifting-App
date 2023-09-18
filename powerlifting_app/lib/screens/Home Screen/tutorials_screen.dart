@@ -34,6 +34,7 @@ class _Tutorial extends State<TutorialScreen> {
                 Container(
                   child: Text(
                     "Tutorial Page",
+                    key: Key('tutcheck'),
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),
