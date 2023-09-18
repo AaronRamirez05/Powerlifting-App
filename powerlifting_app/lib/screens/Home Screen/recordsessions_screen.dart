@@ -34,6 +34,7 @@ class _Record extends State<RecordScreen> {
                 Container(
                   child: Text(
                     "Record Sessions",
+                    key:Key('recordcheck'),
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),

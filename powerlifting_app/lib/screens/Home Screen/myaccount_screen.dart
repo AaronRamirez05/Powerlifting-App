@@ -34,6 +34,7 @@ class _Account extends State<AccountScreen> {
                 Container(
                   child: Text(
                     "My Account",
+                    key:Key('Accountcheck'),
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),
