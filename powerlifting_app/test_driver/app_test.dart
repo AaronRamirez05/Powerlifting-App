@@ -33,7 +33,7 @@ void main() {
       await driver.tap(emailbtn);
       await driver.enterText('aaronramirez879@yahoo.com');
       await driver.tap(passbtn);
-      await driver.enterText('Test123456!');
+      await driver.enterText('Test12345!');
       await driver.tap(loginbtn);
 
       final signoutbtn = find.byValueKey('Sign-Out');
