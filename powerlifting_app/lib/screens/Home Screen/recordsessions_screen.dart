@@ -24,7 +24,8 @@ class _Record extends State<RecordScreen> {
           ),
         ),
         backgroundColor: Colors.black,
-        body: Container(
+        body: 
+        Container(
           child: Center(
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 19.0),
@@ -38,6 +39,7 @@ class _Record extends State<RecordScreen> {
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),
+
               ],
             ),
           )),

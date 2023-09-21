@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/main.dart';
-import 'package:powerlifting_app/screens/Home Screen/tutorials_screen.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/Tutorial%20Screen/tutorials_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/achievements_screens.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/programs_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/recordsessions_screen.dart';
