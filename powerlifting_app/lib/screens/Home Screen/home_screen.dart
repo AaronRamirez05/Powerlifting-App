@@ -155,7 +155,7 @@ class _home extends State<homeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      key: Key('tut'),
+                        key: Key('tut'),
                         height: 60,
                         width: 60,
                         decoration: BoxDecoration(
@@ -178,7 +178,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
-                          key:Key("program"),
+                            key: Key("program"),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ProgramScreen()));
@@ -194,7 +194,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
-                          key:Key('recordbtn'),
+                          key: Key('recordbtn'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => RecordScreen()));
@@ -207,7 +207,7 @@ class _home extends State<homeScreen> {
                 SizedBox(height: 8),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 35),
+                    SizedBox(width: 45),
                     Text(
                       'Tutorials',
                       style: TextStyle(fontFamily: 'open', color: Colors.white),
@@ -253,7 +253,7 @@ class _home extends State<homeScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(35))),
                         child: IconButton(
-                          key:Key('Accountbtn'),
+                          key: Key('Accountbtn'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => AccountScreen()));
@@ -283,7 +283,7 @@ class _home extends State<homeScreen> {
                 SizedBox(height: 8),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 35),
+                    SizedBox(width: 46),
                     Text(
                       '  Weight\nConverter',
                       style: TextStyle(fontFamily: 'open', color: Colors.white),
