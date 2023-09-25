@@ -8,12 +8,20 @@ class ConvertScreen extends StatefulWidget {
 
 class _Convert extends State<ConvertScreen> {
   final TextEditingController value = TextEditingController();
-  var kilograms, conversion;
+  final TextEditingController value2 = TextEditingController();
+  var kilograms, conversion, pounds;
 
-  void pounds() {
+  void convert1(value) {
     setState(() {
       kilograms = int.parse(value.text);
       conversion = kilograms * 2.20462;
+    });
+  }
+
+  void convert2(value2) {
+    setState(() {
+      pounds = int.parse(value2.text);
+      conversion = pounds / 2.20462;
     });
   }
 
@@ -52,27 +60,54 @@ class _Convert extends State<ConvertScreen> {
                     color: Colors.white,
                     height: 50,
                     width: 200,
-                    child: TextField(
+                    child: TextFormField(
                         controller: value,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            hintText: 'Enter the weight in pounds'))
+                            hintText: 'Enter the weight in pounds'),
+                        onChanged: (value) {
+                          convert1(value);
+                        },)
                 ),
                 SizedBox(height: 50),
                 Container(
                     color: Colors.white,
                     height: 50,
                     width: 200,
-                    child: TextField(
+                    child: TextFormField(
+                        controller: value2,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            hintText: 'The weight in kilograms'),
-                        onChanged: (text) {
-                          print('($conversion) kg');
-                        },)
+                            hintText: 'Enter the weight in kilograms'),
+                        onChanged: (value2) {
+                          convert2(value2);
+                        })
                 ),
+                SizedBox(height: 50),
+                Container(
+                  child: CustomPaint(
+                    foregroundPainter: WeightPainter(),
+                  )
+                )
               ],
             ),
           )),
         ));
   }
+}
+
+class WeightPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final weight = Paint()..strokeWidth = 20..color = Colors.red;
+
+    canvas.drawLine(
+      Offset(size.width * 1/2, size.height * 1/6),
+      Offset(size.width * 1/2, size.height * 2/3),
+      weight,
+      );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
