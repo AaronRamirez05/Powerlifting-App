@@ -58,6 +58,11 @@ class YoutubeVids {
         initialVideoId: _id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
+          mute: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
         ),
       );
       squat.add(_ytController);
@@ -70,6 +75,11 @@ class YoutubeVids {
         initialVideoId: _id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
+          mute: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
         ),
       );
       bench.add(_ytController);
@@ -82,6 +92,11 @@ class YoutubeVids {
         initialVideoId: _id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
+          mute: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
         ),
       );
       Deadlift.add(_ytController);

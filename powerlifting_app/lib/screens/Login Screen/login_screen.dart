@@ -28,7 +28,14 @@ class _LoginScreen extends State<LoginScreen> {
   bool interacts = false;
   bool Obsecure = true;
 
-  Widget build(BuildContext context){
+  @override
+  void dispose() {
+    emailinData.dispose();
+    passinData.dispose();
+    super.dispose();
+  }
+
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Container(
@@ -157,9 +164,8 @@ class _LoginScreen extends State<LoginScreen> {
                 SizedBox(
                   height: 5,
                 ),
-                
                 RichText(
-                  key: const Key('signup'),
+                    key: const Key('signup'),
                     text: TextSpan(
                         style: TextStyle(
                             color: Colors.red,
@@ -167,15 +173,15 @@ class _LoginScreen extends State<LoginScreen> {
                             fontFamily: 'Open'),
                         text: 'No account? ',
                         children: [
-                      TextSpan(
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = widget.onClickedSignUp,
-                          text: 'Sign Up',
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Colors.white,
-                              fontFamily: 'Open')),
-                    ]))
+                          TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = widget.onClickedSignUp,
+                              text: 'Sign Up',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.white,
+                                  fontFamily: 'Open')),
+                        ]))
               ],
             ),
           )),
