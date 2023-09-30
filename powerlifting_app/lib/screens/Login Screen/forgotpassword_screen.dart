@@ -15,6 +15,12 @@ class _ForgotScreen extends State<ForgotScreen> {
   final formKey = GlobalKey<FormState>();
   bool interacts = false;
 
+  @override
+  void dispose() {
+    emailinData.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -94,7 +100,7 @@ class _ForgotScreen extends State<ForgotScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16))),
                             child: TextButton(
-                              key: Key('Reset'),
+                                key: Key('Reset'),
                                 onPressed: (!interacts) ? null : resetPassword,
                                 child: Text(
                                   'Reset Password',

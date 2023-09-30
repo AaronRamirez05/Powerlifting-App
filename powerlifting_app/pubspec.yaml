@@ -51,7 +51,6 @@ dependencies:
   youtube_data_api: ^1.0.4
   youtube_explode_dart: ^1.12.4
 
-
   #Validate Email
   email_validator: ^2.1.16
 

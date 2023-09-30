@@ -27,6 +27,13 @@ class _Convert extends State<ConvertScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    value.dispose();
+    value2.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
