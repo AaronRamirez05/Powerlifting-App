@@ -9,7 +9,8 @@ class ConvertScreen extends StatefulWidget {
 class _Convert extends State<ConvertScreen> {
   TextEditingController value = TextEditingController();
   TextEditingController value2 = TextEditingController();
-  var kilograms, conversion1, conversion2, pounds;
+  var kilograms, conversion1, conversion2, pounds, pound5, pound10, pound25, pound45, pound100;
+  String? imagePath;
 
   void convert1(String inputvalue) {
     setState(() {
@@ -25,6 +26,37 @@ class _Convert extends State<ConvertScreen> {
       conversion2 = kilograms * 2.20462;
       value.text = conversion2.toStringAsFixed(3);
     });
+  }
+
+  void imagePathway() {
+    if (pounds <= 5) {
+      imagePath = 'assets/weight1.png';
+    } else if (pounds <= 10) {
+      imagePath = 'assets/weight2.png';
+    } else if (pounds <= 25) {
+      imagePath = 'assets/weight3.png';
+    } else if (pounds <= 45) {
+      imagePath = 'assets/weight4.png';
+    } else if (pounds <= 100) {
+      imagePath = 'assets/weight5.png';
+    } else {
+      imagePath = 'assets/weight5.png';
+
+      //pound100 = pounds / 100;
+      //pound45 = pounds % 100 / 45;
+      //pound25 = pounds % 100 % 45 / 25;
+      //pound10 = pounds % 100 % 45 % 25 / 10;
+      //pound5 = pounds % 100 % 45 % 25 % 10 / 5;
+      //for (int i = 0; i < pound45; i++) {
+        //Expanded(child: Image.asset('assets/weight4.png'));
+      //} for (int i = 0; i < pound25; i++) {
+        //Expanded(child: Image.asset('assets/weight3.png'));
+      //} for (int i = 0; i < pound10; i++) {
+        //Expanded(child: Image.asset('assets/weight2.png'));
+      //} for (int i = 0; i < pound5; i++) {
+        //Expanded(child: Image.asset('assets/weight1.png'));
+      //}
+    }
   }
 
   Widget build(BuildContext context) {
@@ -77,12 +109,14 @@ class _Convert extends State<ConvertScreen> {
                               if (value == "") {
                                 value2.clear();
                               }
+                              imagePathway();
                             });
                           },
                           onEditingComplete: () {
                             if (value.text.isEmpty) {
                               value2.clear();
                             }
+                            imagePathway();
                           },
                         )),
                     SizedBox(height: 50),
@@ -101,39 +135,22 @@ class _Convert extends State<ConvertScreen> {
                                 if (value2 == "") {
                                   value.clear();
                                 }
+                                imagePathway();
                               });
                             },
                             onEditingComplete: () {
                               if (value2.text.isEmpty) {
                                 value.clear();
                               }
+                              imagePathway();
                             })),
                     SizedBox(height: 50),
-                    Container(
-                        child: CustomPaint(
-                      foregroundPainter: WeightPainter(),
-                    ))
+                    if (imagePath != null)
+                      Expanded(child: Image.asset(imagePath!)),
+                    //print('$imagePath');
                   ],
                 ),
               )),
             )));
   }
-}
-
-class WeightPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final weight = Paint()
-      ..strokeWidth = 20
-      ..color = Colors.red;
-
-    canvas.drawLine(
-      Offset(size.width * 1 / 2, size.height * 1 / 6),
-      Offset(size.width * 1 / 2, size.height * 2 / 3),
-      weight,
-    );
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
