@@ -17,6 +17,12 @@ class _home extends State<homeScreen> {
   TextEditingController emailupData = TextEditingController();
   final user = FirebaseAuth.instance.currentUser!;
 
+  @override
+  void dispose() {
+    emailupData.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,

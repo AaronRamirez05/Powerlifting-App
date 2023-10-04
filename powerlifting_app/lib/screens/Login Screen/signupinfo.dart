@@ -8,6 +8,12 @@ class SignupInfo extends StatefulWidget {
 class _Info extends State<SignupInfo> {
   TextEditingController emailupData = TextEditingController();
 
+  @override
+  void dispose() {
+    emailupData.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,

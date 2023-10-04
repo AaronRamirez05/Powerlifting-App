@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
+import 'package:powerlifting_app/utils/Utils.dart';
 
 class ConvertScreen extends StatefulWidget {
   @override
@@ -7,25 +8,18 @@ class ConvertScreen extends StatefulWidget {
 }
 
 class _Convert extends State<ConvertScreen> {
+  converterTools tools = new converterTools();
   TextEditingController value = TextEditingController();
   TextEditingController value2 = TextEditingController();
+
   var kilograms, conversion1, conversion2, pounds, pound5, pound10, pound25, pound45, pound100;
   String? imagePath;
 
-  void convert1(String inputvalue) {
-    setState(() {
-      pounds = double.tryParse(inputvalue);
-      conversion1 = pounds / 2.20462;
-      value2.text = conversion1.toStringAsFixed(3);
-    });
-  }
-
-  void convert2(String inputvalue) {
-    setState(() {
-      kilograms = double.tryParse(inputvalue);
-      conversion2 = kilograms * 2.20462;
-      value.text = conversion2.toStringAsFixed(3);
-    });
+  @override
+  void dispose() {
+    value.dispose();
+    value2.dispose();
+    super.dispose();
   }
 
   void imagePathway() {
@@ -105,7 +99,9 @@ class _Convert extends State<ConvertScreen> {
                               hintText: 'Enter the weight in pounds'),
                           onChanged: (value) {
                             setState(() {
-                              convert1(value);
+                              value2.text = converterTools
+                                  .convert1(value, conversion1, pounds)
+                                  .toStringAsFixed(3);
                               if (value == "") {
                                 value2.clear();
                               }
@@ -131,7 +127,9 @@ class _Convert extends State<ConvertScreen> {
                                 hintText: 'Enter the weight in kilograms'),
                             onChanged: (value2) {
                               setState(() {
-                                convert2(value2);
+                                value.text = converterTools
+                                    .convert2(value2, conversion2, kilograms)
+                                    .toStringAsFixed(3);
                                 if (value2 == "") {
                                   value.clear();
                                 }

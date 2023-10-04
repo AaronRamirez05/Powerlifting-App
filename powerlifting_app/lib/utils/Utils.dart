@@ -58,6 +58,11 @@ class YoutubeVids {
         initialVideoId: _id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
+          mute: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
         ),
       );
       squat.add(_ytController);
@@ -70,6 +75,11 @@ class YoutubeVids {
         initialVideoId: _id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
+          mute: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
         ),
       );
       bench.add(_ytController);
@@ -82,9 +92,34 @@ class YoutubeVids {
         initialVideoId: _id,
         flags: const YoutubePlayerFlags(
           autoPlay: false,
+          mute: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
         ),
       );
       Deadlift.add(_ytController);
     }
+  }
+}
+
+class converterTools {
+  static double convert1(String inputvalue, var conversion1, var pounds) {
+    pounds = double.tryParse(inputvalue);
+    if (pounds <= 0) {
+      throw ArgumentError();
+    }
+    conversion1 = pounds / 2.20462;
+    return conversion1;
+  }
+
+  static double convert2(String inputvalue, var conversion2, var kilograms) {
+    kilograms = double.tryParse(inputvalue);
+    if (kilograms <= 0) {
+      throw ArgumentError();
+    }
+    conversion2 = kilograms * 2.20462;
+    return conversion2;
   }
 }

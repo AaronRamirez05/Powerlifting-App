@@ -7,10 +7,9 @@ class ProgramScreen extends StatefulWidget {
 }
 
 class _Program extends State<ProgramScreen> {
-
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           backgroundColor: Colors.black,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -18,8 +17,8 @@ class _Program extends State<ProgramScreen> {
             iconSize: 35,
             key: Key('back-cups'),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => homeScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => homeScreen()));
             },
           ),
         ),
@@ -44,4 +43,3 @@ class _Program extends State<ProgramScreen> {
         ));
   }
 }
-
