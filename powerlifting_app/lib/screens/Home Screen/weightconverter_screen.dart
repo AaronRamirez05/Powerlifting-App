@@ -12,8 +12,18 @@ class _Convert extends State<ConvertScreen> {
   TextEditingController value = TextEditingController();
   TextEditingController value2 = TextEditingController();
 
-  var kilograms, conversion1, conversion2, pounds, pound5, pound10, pound25, pound45, pound100;
+  var kilograms,
+      conversion1,
+      conversion2,
+      pounds,
+      pound5,
+      pound10,
+      pound25,
+      pound45,
+      pound100;
   String? imagePath;
+
+  //Bar weight = 20KG or 45LBS
 
   @override
   void dispose() {
@@ -22,16 +32,16 @@ class _Convert extends State<ConvertScreen> {
     super.dispose();
   }
 
-  void imagePathway() {
-    if (pounds <= 5) {
+  void imagePathway(double poundstemp) {
+    if (poundstemp <= 5) {
       imagePath = 'assets/weight1.png';
-    } else if (pounds <= 10) {
+    } else if (poundstemp <= 10) {
       imagePath = 'assets/weight2.png';
-    } else if (pounds <= 25) {
+    } else if (poundstemp <= 25) {
       imagePath = 'assets/weight3.png';
-    } else if (pounds <= 45) {
+    } else if (poundstemp <= 45) {
       imagePath = 'assets/weight4.png';
-    } else if (pounds <= 100) {
+    } else if (poundstemp <= 100) {
       imagePath = 'assets/weight5.png';
     } else {
       imagePath = 'assets/weight5.png';
@@ -42,13 +52,13 @@ class _Convert extends State<ConvertScreen> {
       //pound10 = pounds % 100 % 45 % 25 / 10;
       //pound5 = pounds % 100 % 45 % 25 % 10 / 5;
       //for (int i = 0; i < pound45; i++) {
-        //Expanded(child: Image.asset('assets/weight4.png'));
+      //Expanded(child: Image.asset('assets/weight4.png'));
       //} for (int i = 0; i < pound25; i++) {
-        //Expanded(child: Image.asset('assets/weight3.png'));
+      //Expanded(child: Image.asset('assets/weight3.png'));
       //} for (int i = 0; i < pound10; i++) {
-        //Expanded(child: Image.asset('assets/weight2.png'));
+      //Expanded(child: Image.asset('assets/weight2.png'));
       //} for (int i = 0; i < pound5; i++) {
-        //Expanded(child: Image.asset('assets/weight1.png'));
+      //Expanded(child: Image.asset('assets/weight1.png'));
       //}
     }
   }
@@ -105,14 +115,16 @@ class _Convert extends State<ConvertScreen> {
                               if (value == "") {
                                 value2.clear();
                               }
-                              imagePathway();
+                              pounds = double.parse(value);
+                              imagePathway(pounds);
                             });
                           },
                           onEditingComplete: () {
                             if (value.text.isEmpty) {
                               value2.clear();
                             }
-                            imagePathway();
+                            pounds = double.parse(value.text);
+                            imagePathway(pounds);
                           },
                         )),
                     SizedBox(height: 50),
@@ -133,18 +145,25 @@ class _Convert extends State<ConvertScreen> {
                                 if (value2 == "") {
                                   value.clear();
                                 }
-                                imagePathway();
+                                pounds = double.parse(value.text);
+                                imagePathway(pounds);
                               });
                             },
                             onEditingComplete: () {
                               if (value2.text.isEmpty) {
                                 value.clear();
                               }
-                              imagePathway();
+                              pounds = double.parse(value.text);
+                              imagePathway(pounds);
                             })),
                     SizedBox(height: 50),
                     if (imagePath != null)
                       Expanded(child: Image.asset(imagePath!)),
+                    Container(
+                      width: 250,
+                      height: 25,
+                      color: Colors.grey,
+                    ),
                     //print('$imagePath');
                   ],
                 ),
