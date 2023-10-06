@@ -22,6 +22,7 @@ class _Record extends State<RecordScreen> {
   bool _isLoading = true;
   late CameraController _cameraController;
   bool _isRecording = false;
+  bool _flipped = false;
 
   @override
   void dispose() {
@@ -30,12 +31,21 @@ class _Record extends State<RecordScreen> {
   }
 
   _initCamera() async {
-    final cameras = await availableCameras();
-    final front = cameras.firstWhere(
-        (camera) => camera.lensDirection == CameraLensDirection.front);
-    _cameraController = CameraController(front, ResolutionPreset.max);
-    await _cameraController.initialize();
-    setState(() => _isLoading = false);
+    if (_flipped == false) {
+      final cameras = await availableCameras();
+      final back = cameras.firstWhere(
+          (camera) => camera.lensDirection == CameraLensDirection.back);
+      _cameraController = CameraController(back, ResolutionPreset.max);
+      await _cameraController.initialize();
+      setState(() => _isLoading = false);
+    } else {
+      final cameras = await availableCameras();
+      final front = cameras.firstWhere(
+          (camera) => camera.lensDirection == CameraLensDirection.front);
+      _cameraController = CameraController(front, ResolutionPreset.max);
+      await _cameraController.initialize();
+      setState(() => _isLoading = false);
+    }
   }
 
   _recordVideo() async {
@@ -95,11 +105,33 @@ class _Record extends State<RecordScreen> {
                 Padding(
                   padding: const EdgeInsets.all(25),
                   child: FloatingActionButton(
+                    key: Key('recordcheck'),
                     backgroundColor: Colors.red,
                     child: Icon(_isRecording ? Icons.stop : Icons.circle),
                     onPressed: () => _recordVideo(),
                   ),
                 ),
+                Row(children: <Widget>[
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Container(
+                      height: 100,
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: FloatingActionButton(
+                          backgroundColor: Colors.red,
+                          child: Icon(Icons.flip_camera_android),
+                          onPressed: () {
+                            setState(() {
+                              _flipped = !_flipped;
+                              _initCamera();
+                            });
+                          },
+                        ),
+                      ))
+                ]),
               ],
             ),
           ));
