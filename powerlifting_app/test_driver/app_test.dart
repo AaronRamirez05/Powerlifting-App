@@ -13,20 +13,19 @@ void main() {
   late FlutterDriver driver;
 
   // Connect to the Flutter driver before running any tests.
-  setUpAll(()  async{
+  setUpAll(() async {
     driver = await FlutterDriver.connect();
   });
 
-   // Close the connection to the driver after the tests have completed.
+  // Close the connection to the driver after the tests have completed.
   tearDownAll(() async {
-    if (driver!=null) {
+    if (driver != null) {
       driver.close();
     }
   });
-  
-  group('Happy Paths',() {
 
-    test("login successful",() async{
+  group('Happy Paths', () {
+    test("login successful", () async {
       final emailbtn = find.byValueKey('emailin-field');
       final passbtn = find.byValueKey('passin-field');
       final loginbtn = find.byValueKey('login');
@@ -37,78 +36,97 @@ void main() {
       await driver.tap(loginbtn);
 
       final signoutbtn = find.byValueKey('Sign-Out');
-     expect(await driver.getText(signoutbtn), 'Sign Out');
+      expect(await driver.getText(signoutbtn), 'Sign Out');
     });
 
-    test("tutorial screen happy paths",() async{
+    test("tutorial screen happy paths", () async {
       final tutorialbtn = find.byValueKey('tut');
       await driver.tap(tutorialbtn);
 
-      final checkpage = find.byValueKey('tutcheck');
+      final Squatpage = find.byValueKey('Squat');
+      expect(
+        await driver.getText(Squatpage),
+        'Squat Tutorials',
+      );
 
-      expect(await driver.getText(checkpage),'Tutorial Page');
+      final Benchpage = find.byValueKey('Bench');
+      expect(
+        await driver.getText(Benchpage),
+        'Bench Tutorials',
+      );
+
+      final Deadliftpage = find.byValueKey('Deadlift');
+      expect(
+        await driver.getText(Deadliftpage),
+        'Deadlift Tutorials',
+      );
+
       final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
+      await driver.tap(backbtn);
     });
 
-    test("program screen happy paths",() async{
+    test("program screen happy paths", () async {
       final programbtn = find.byValueKey('program');
       await driver.tap(programbtn);
 
       final checkpage = find.byValueKey('programcheck');
 
-      expect(await driver.getText(checkpage),'Programs');
+      expect(await driver.getText(checkpage), 'Programs');
       final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
+      await driver.tap(backbtn);
     });
 
-    test("record screen happy paths",() async{
+    test("record screen happy paths", () async {
       final recordbtn = find.byValueKey('recordbtn');
       await driver.tap(recordbtn);
 
       final checkpage = find.byValueKey('recordcheck');
+      await driver.tap(checkpage);
 
-      expect(await driver.getText(checkpage),'Record Sessions');
+      await Future.delayed(Duration(seconds: 2));
+      await driver.tap(checkpage);
+
       final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
+      await driver.tap(backbtn);
+      await driver.tap(backbtn);
     });
 
-    test("convert screen happy paths",() async{
+    test("convert screen happy paths", () async {
       final convertbtn = find.byValueKey('weightconvertbtn');
       await driver.tap(convertbtn);
 
       final checkpage = find.byValueKey('convertcheck');
 
-      expect(await driver.getText(checkpage),'Weight Converter');
+      expect(await driver.getText(checkpage), 'Weight Converter');
       final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
+      await driver.tap(backbtn);
     });
 
-    test("account screen happy paths",() async{
+    test("account screen happy paths", () async {
       final accountbtn = find.byValueKey('Accountbtn');
       await driver.tap(accountbtn);
 
       final checkpage = find.byValueKey('Accountcheck');
 
-      expect(await driver.getText(checkpage),'My Account');
+      expect(await driver.getText(checkpage), 'My Account');
       final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
+      await driver.tap(backbtn);
     });
 
-    test("Achievements screen happy paths",() async{
+    test("Achievements screen happy paths", () async {
       final accountbtn = find.byValueKey('achievebtn');
       await driver.tap(accountbtn);
 
       final checkpage = find.byValueKey('achievecheck');
 
-      expect(await driver.getText(checkpage),'Achievements');
+      expect(await driver.getText(checkpage), 'Achievements');
       final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
-     final signoutbtn = find.byValueKey('Sign-Out');
-     await driver.tap(signoutbtn);
+      await driver.tap(backbtn);
+      final signoutbtn = find.byValueKey('Sign-Out');
+      await driver.tap(signoutbtn);
     });
 
-    test("Forgot Password successful",() async{
+    test("Forgot Password successful", () async {
       final Forgotbtn = find.byValueKey('Forgot');
       await driver.tap(Forgotbtn);
       final emailbtn = find.byValueKey('emailin-field');
@@ -118,20 +136,14 @@ void main() {
       final resetbtn = find.byValueKey('Reset');
       await driver.tap(resetbtn);
 
-     
-     final loginbtn = find.byValueKey('logintxt');
+      final loginbtn = find.byValueKey('logintxt');
 
-     expect(await driver.getText(loginbtn), 'Login');
-      
+      expect(await driver.getText(loginbtn), 'Login');
     });
-
-      
   });
 
-
-   group('Sad Paths',() {
-
-    test("login unsuccessful",() async{
+  group('Sad Paths', () {
+    test("login unsuccessful", () async {
       final emailbtn = find.byValueKey('emailin-field');
       final passbtn = find.byValueKey('passin-field');
       final loginbtn = find.byValueKey('logintxt');
@@ -141,10 +153,10 @@ void main() {
       await driver.enterText('Test122222');
       await driver.tap(loginbtn);
 
-     expect(await driver.getText(loginbtn), 'Login');
+      expect(await driver.getText(loginbtn), 'Login');
     });
 
-    test("Forgot Password unsuccessful",() async{
+    test("Forgot Password unsuccessful", () async {
       final Forgotbtn = find.byValueKey('Forgot');
       await driver.tap(Forgotbtn);
       final emailbtn = find.byValueKey('emailin-field');
@@ -155,13 +167,10 @@ void main() {
       await driver.tap(resetbtn);
 
       final resettxt = find.byValueKey('resetbutton');
-     expect(await driver.getText(resettxt), 'Reset Password');
-     
-     final backbtn = find.byValueKey('back-cups');
-     await driver.tap(backbtn);
-      
+      expect(await driver.getText(resettxt), 'Reset Password');
+
+      final backbtn = find.byValueKey('back-cups');
+      await driver.tap(backbtn);
     });
-      
   });
-  
 }

@@ -81,6 +81,7 @@ class _Tutorial extends State<TutorialScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 14.0),
                           child: Text(
                             'Squat Tutorials',
+                            key: Key('Squat'),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20,
@@ -126,6 +127,7 @@ class _Tutorial extends State<TutorialScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 14.0),
                           child: Text(
                             'Bench Tutorials',
+                            key: Key('Bench'),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20,
@@ -133,32 +135,45 @@ class _Tutorial extends State<TutorialScreen> {
                                 fontFamily: 'Open'),
                           )),
                       for (int i = 0; i < temp.bench.length; i++) ...[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: YoutubePlayer(
-                            controller: temp.bench[i],
-                            showVideoProgressIndicator: true,
-                            bottomActions: [],
-                          ),
+                        Container(
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: YoutubePlayerBuilder(
+                                  player: YoutubePlayer(
+                                    controller: temp.bench[i],
+                                    showVideoProgressIndicator: true,
+                                    bottomActions: [],
+                                  ),
+                                  builder: (context, player) {
+                                    return Column(
+                                      children: <Widget>[
+                                        player,
+                                        if (temp.benchDataTitle.isNotEmpty &&
+                                            i < temp.benchDataTitle.length)
+                                          Text(temp.benchDataTitle[i],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.white,
+                                                  fontFamily: 'Open')),
+                                        Text(
+                                            'Author: ${temp.benchDataAuthor[i]}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white,
+                                                fontFamily: 'Open')),
+                                        SizedBox(height: 10),
+                                      ],
+                                    );
+                                  })),
                         ),
-                        Text(temp.benchDataTitle[i],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Open')),
-                        Text('Author: ${temp.benchDataAuthor[i]}',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                                fontFamily: 'Open')),
-                        SizedBox(height: 10)
                       ],
                       Container(
                           padding: EdgeInsets.symmetric(horizontal: 14.0),
                           child: Text(
                             'Deadlift Tutorials',
+                            key: Key('Deadlift'),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20,
@@ -166,27 +181,39 @@ class _Tutorial extends State<TutorialScreen> {
                                 fontFamily: 'Open'),
                           )),
                       for (int i = 0; i < temp.Deadlift.length; i++) ...[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: YoutubePlayer(
-                            controller: temp.Deadlift[i],
-                            showVideoProgressIndicator: true,
-                            bottomActions: [],
-                          ),
+                        Container(
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: YoutubePlayerBuilder(
+                                  player: YoutubePlayer(
+                                    controller: temp.Deadlift[i],
+                                    showVideoProgressIndicator: true,
+                                    bottomActions: [],
+                                  ),
+                                  builder: (context, player) {
+                                    return Column(
+                                      children: <Widget>[
+                                        player,
+                                        if (temp.deadliftTitle.isNotEmpty &&
+                                            i < temp.deadliftTitle.length)
+                                          Text(temp.deadliftTitle[i],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.white,
+                                                  fontFamily: 'Open')),
+                                        Text(
+                                            'Author: ${temp.deadliftAuthor[i]}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white,
+                                                fontFamily: 'Open')),
+                                        SizedBox(height: 10),
+                                      ],
+                                    );
+                                  })),
                         ),
-                        Text(temp.deadliftTitle[i],
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Open')),
-                        Text('Author: ${temp.deadliftAuthor[i]}',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                                fontFamily: 'Open')),
-                        SizedBox(height: 10)
                       ]
                     ]),
                   ),
