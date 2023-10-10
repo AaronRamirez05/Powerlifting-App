@@ -15,68 +15,71 @@ class _Convert extends State<ConvertScreen> {
   var kilograms, conversion1, conversion2, pounds;
   String? imagePath;
   final kilogram25 = Container(
-    alignment: Alignment.center,
-    color: Colors.red,
-    width: 30,
-    height: 120,
-    child: Text("25", style: TextStyle(color: Colors.black), textAlign: TextAlign.center,)
-  );
+      alignment: Alignment.center,
+      color: Colors.red,
+      width: 30,
+      height: 120,
+      child: Text(
+        "25",
+        style: TextStyle(color: Colors.black),
+        textAlign: TextAlign.center,
+      ));
   final kilogram20 = Container(
-    alignment: Alignment.center,
-    color: Colors.blue,
-    width: 30,
-    height: 110,
-    child: Text("20", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.blue,
+      width: 30,
+      height: 110,
+      child: Text("20",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram15 = Container(
-    alignment: Alignment.center,
-    color: Colors.green,
-    width: 30,
-    height: 100,
-    child: Text("15", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.yellow,
+      width: 30,
+      height: 100,
+      child: Text("15",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram10 = Container(
-    alignment: Alignment.center,
-    color: Colors.yellow,
-    width: 30,
-    height: 90,
-    child: Text("10", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.green,
+      width: 30,
+      height: 90,
+      child: Text("10",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram5 = Container(
-    alignment: Alignment.center,
-    color: Colors.purple,
-    width: 30,
-    height: 80,
-    child: Text("5", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.white,
+      width: 30,
+      height: 80,
+      child: Text("5",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram2_5 = Container(
-    alignment: Alignment.center,
-    color: Colors.orange,
-    width: 30,
-    height: 70,
-    child: Text("2.5", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.grey[800],
+      width: 30,
+      height: 70,
+      child: Text("2.5",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram1_25 = Container(
-    alignment: Alignment.center,
-    color: Colors.lightGreen,
-    width: 30,
-    height: 60,
-    child: Text("1.25", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.grey[400],
+      width: 30,
+      height: 60,
+      child: Text("1.25",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram0_5 = Container(
-    alignment: Alignment.center,
-    color: Colors.lightBlue,
-    width: 30,
-    height: 50,
-    child: Text("0.5", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.grey[300],
+      width: 30,
+      height: 50,
+      child: Text("0.5",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   final kilogram0_25 = Container(
-    alignment: Alignment.center,
-    color: Colors.purpleAccent,
-    width: 30,
-    height: 40,
-    child: Text("0.25", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
-  );
+      alignment: Alignment.center,
+      color: Colors.grey[200],
+      width: 30,
+      height: 40,
+      child: Text("0.25",
+          style: TextStyle(color: Colors.black), textAlign: TextAlign.center));
   List<Widget> containerWeights = [];
 
   //Bar weight = 20KG or 45LBS
@@ -116,7 +119,7 @@ class _Convert extends State<ConvertScreen> {
           FocusScope.of(context).unfocus();
         },
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               backgroundColor: Colors.black,
               leading: IconButton(
@@ -223,7 +226,10 @@ class _Convert extends State<ConvertScreen> {
   void updateWeights(double pounds) {
     var temp = [25, 20, 15, 10, 5, 2.5, 1.25, 0.5, 0.25];
     var poundsTemp = pounds;
-    if (poundsTemp < 20) {containerWeights = []; return; }
+    if (poundsTemp < 20) {
+      containerWeights = [];
+      return;
+    }
     poundsTemp -= 20;
     poundsTemp /= 2;
     containerWeights = [];
