@@ -15,49 +15,67 @@ class _Convert extends State<ConvertScreen> {
   var kilograms, conversion1, conversion2, pounds;
   String? imagePath;
   final kilogram25 = Container(
+    alignment: Alignment.center,
     color: Colors.red,
-    width: 45,
+    width: 30,
     height: 120,
+    child: Text("25", style: TextStyle(color: Colors.black), textAlign: TextAlign.center,)
   );
   final kilogram20 = Container(
+    alignment: Alignment.center,
     color: Colors.blue,
-    width: 40,
+    width: 30,
     height: 110,
+    child: Text("20", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
   final kilogram15 = Container(
+    alignment: Alignment.center,
     color: Colors.green,
-    width: 35,
+    width: 30,
     height: 100,
+    child: Text("15", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
   final kilogram10 = Container(
+    alignment: Alignment.center,
     color: Colors.yellow,
     width: 30,
     height: 90,
+    child: Text("10", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
   final kilogram5 = Container(
+    alignment: Alignment.center,
     color: Colors.purple,
-    width: 25,
+    width: 30,
     height: 80,
+    child: Text("5", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
-  final kilogram1 = Container(
+  final kilogram2_5 = Container(
+    alignment: Alignment.center,
     color: Colors.orange,
-    width: 20,
+    width: 30,
     height: 70,
+    child: Text("2.5", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
-  final kilogram05 = Container(
+  final kilogram1_25 = Container(
+    alignment: Alignment.center,
     color: Colors.lightGreen,
-    width: 15,
+    width: 30,
     height: 60,
+    child: Text("1.25", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
-  final kilogram025 = Container(
+  final kilogram0_5 = Container(
+    alignment: Alignment.center,
     color: Colors.lightBlue,
-    width: 10,
+    width: 30,
     height: 50,
+    child: Text("0.5", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
-  final kilogram01 = Container(
+  final kilogram0_25 = Container(
+    alignment: Alignment.center,
     color: Colors.purpleAccent,
-    width: 5,
+    width: 30,
     height: 40,
+    child: Text("0.25", style: TextStyle(color: Colors.black), textAlign: TextAlign.center)
   );
   List<Widget> containerWeights = [];
 
@@ -98,6 +116,7 @@ class _Convert extends State<ConvertScreen> {
           FocusScope.of(context).unfocus();
         },
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
             appBar: AppBar(
               backgroundColor: Colors.black,
               leading: IconButton(
@@ -155,7 +174,7 @@ class _Convert extends State<ConvertScreen> {
                             }
                             pounds = double.parse(value.text);
                             //imagePathway(pounds);
-                            updateWeights(pounds);
+                            //updateWeights(pounds);
                           },
                         )),
                     SizedBox(height: 50),
@@ -178,6 +197,7 @@ class _Convert extends State<ConvertScreen> {
                                 }
                                 pounds = double.parse(value.text);
                                 //imagePathway(pounds);
+                                updateWeights(double.parse(value2));
                               });
                             },
                             onEditingComplete: () {
@@ -201,10 +221,11 @@ class _Convert extends State<ConvertScreen> {
   }
 
   void updateWeights(double pounds) {
-    var temp = [25, 20, 15, 10, 5, 1, 0.5, 0.25, 0.1];
+    var temp = [25, 20, 15, 10, 5, 2.5, 1.25, 0.5, 0.25];
     var poundsTemp = pounds;
-    if (poundsTemp < 20) return;
+    if (poundsTemp < 20) {containerWeights = []; return; }
     poundsTemp -= 20;
+    poundsTemp /= 2;
     containerWeights = [];
     for (var num in temp) {
       int numOfWeight = (poundsTemp / num).floor();
@@ -214,13 +235,13 @@ class _Convert extends State<ConvertScreen> {
         if (num == 15) containerWeights.add(kilogram15);
         if (num == 10) containerWeights.add(kilogram10);
         if (num == 5) containerWeights.add(kilogram5);
-        if (num == 1) containerWeights.add(kilogram1);
-        if (num == 0.5) containerWeights.add(kilogram05);
-        if (num == 0.25) containerWeights.add(kilogram025);
-        if (num == 0.1) containerWeights.add(kilogram01);
+        if (num == 2.5) containerWeights.add(kilogram2_5);
+        if (num == 1.25) containerWeights.add(kilogram1_25);
+        if (num == 0.5) containerWeights.add(kilogram0_5);
+        if (num == 0.25) containerWeights.add(kilogram0_25);
       }
       poundsTemp -= numOfWeight * num;
-      if (poundsTemp < 0.1) return;
+      if (poundsTemp < 0.25) return;
     }
   }
 }
