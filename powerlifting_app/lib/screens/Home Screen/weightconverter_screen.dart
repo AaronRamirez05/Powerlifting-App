@@ -12,56 +12,53 @@ class _Convert extends State<ConvertScreen> {
   TextEditingController value = TextEditingController();
   TextEditingController value2 = TextEditingController();
 
-  var kilograms,
-      conversion1,
-      conversion2,
-      pounds;
+  var kilograms, conversion1, conversion2, pounds;
   String? imagePath;
-  final kilogram45 = Container(
-                        color: Colors.red,
-                        width: 45,
-                        height: 120,
-                      );
   final kilogram25 = Container(
-                        color: Colors.blue,
-                        width: 40,
-                        height: 110,
-                      );
+    color: Colors.red,
+    width: 45,
+    height: 120,
+  );
+  final kilogram20 = Container(
+    color: Colors.blue,
+    width: 40,
+    height: 110,
+  );
   final kilogram15 = Container(
-                        color: Colors.green,
-                        width: 35,
-                        height: 100,
-                      );
+    color: Colors.green,
+    width: 35,
+    height: 100,
+  );
   final kilogram10 = Container(
-                        color: Colors.yellow,
-                        width: 30,
-                        height: 90,
-                      );
+    color: Colors.yellow,
+    width: 30,
+    height: 90,
+  );
   final kilogram5 = Container(
-                        color: Colors.purple,
-                        width: 25,
-                        height: 80,
-                      );
+    color: Colors.purple,
+    width: 25,
+    height: 80,
+  );
   final kilogram1 = Container(
-                        color: Colors.orange,
-                        width: 20,
-                        height: 70,
-                      );
+    color: Colors.orange,
+    width: 20,
+    height: 70,
+  );
   final kilogram05 = Container(
-                        color: Colors.lightGreen,
-                        width: 15,
-                        height: 60,
-                      );
+    color: Colors.lightGreen,
+    width: 15,
+    height: 60,
+  );
   final kilogram025 = Container(
-                        color: Colors.lightBlue,
-                        width: 10,
-                        height: 50,
-                      );
+    color: Colors.lightBlue,
+    width: 10,
+    height: 50,
+  );
   final kilogram01 = Container(
-                        color: Colors.purpleAccent,
-                        width: 5,
-                        height: 40,
-                      );
+    color: Colors.purpleAccent,
+    width: 5,
+    height: 40,
+  );
   List<Widget> containerWeights = [];
 
   //Bar weight = 20KG or 45LBS
@@ -141,10 +138,9 @@ class _Convert extends State<ConvertScreen> {
                               hintText: 'Enter the weight in pounds'),
                           onChanged: (value) {
                             setState(() {
-                              final weightsKg = converterTools
-                                  .convert1(value, conversion1, pounds);
-                              value2.text = weightsKg
-                                  .toStringAsFixed(3);
+                              final weightsKg = converterTools.convert1(
+                                  value, conversion1, pounds);
+                              value2.text = weightsKg.toStringAsFixed(3);
                               if (value == "") {
                                 value2.clear();
                               }
@@ -192,26 +188,20 @@ class _Convert extends State<ConvertScreen> {
                               //imagePathway(pounds);
                             })),
                     SizedBox(height: 100),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                      Container(
-                      width: 500,
-                      height: 25,
-                      color: Colors.grey),
+                    Stack(alignment: Alignment.center, children: [
+                      Container(width: 500, height: 25, color: Colors.grey),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: containerWeights
-                      ),]
-                    ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: containerWeights),
+                    ]),
                   ],
                 ),
               )),
             )));
   }
-  
+
   void updateWeights(double pounds) {
-    var temp = [45, 25, 15, 10, 5, 1, 0.5, 0.25, 0.1];
+    var temp = [25, 20, 15, 10, 5, 1, 0.5, 0.25, 0.1];
     var poundsTemp = pounds;
     if (poundsTemp < 20) return;
     poundsTemp -= 20;
@@ -219,8 +209,8 @@ class _Convert extends State<ConvertScreen> {
     for (var num in temp) {
       int numOfWeight = (poundsTemp / num).floor();
       for (var i = 0; i < numOfWeight; i++) {
-        if (num == 45) containerWeights.add(kilogram45);
         if (num == 25) containerWeights.add(kilogram25);
+        if (num == 20) containerWeights.add(kilogram20);
         if (num == 15) containerWeights.add(kilogram15);
         if (num == 10) containerWeights.add(kilogram10);
         if (num == 5) containerWeights.add(kilogram5);
