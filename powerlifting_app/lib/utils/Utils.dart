@@ -107,6 +107,7 @@ class YoutubeVids {
 class converterTools {
   static double convert1(String inputvalue, var conversion1, var pounds) {
     pounds = double.tryParse(inputvalue);
+    if (pounds == null) return 0;
     if (pounds <= 0) {
       throw ArgumentError();
     }
