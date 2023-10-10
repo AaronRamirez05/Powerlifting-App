@@ -88,7 +88,13 @@ class _Convert extends State<ConvertScreen> {
       imagePath = 'assets/weight5.png';
     }
   }
- 
+
+  //25 kg/ 20kg / 15kg / 10kg / 5kg / 2.5kg /  1.25kg / 0.5kg / 0.25kg       Barbell = 20kg    EXAMPLE: 90KG CALCULATE, subtract 20 for barbell weight, 70kg /2 for one side of barbell, 35kg
+  //35kg           35 / 25  == 1    35-25 = 10
+  //10kg           10 /20 == 0.xxx
+  //10kg           10 /15 == 0.xxx
+  //10kg           10/10 == 1       10-10 = 0
+
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
