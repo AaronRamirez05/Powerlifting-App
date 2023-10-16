@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
+import 'package:powerlifting_app/utils/Utils.dart';
 
 class ProgramScreen extends StatefulWidget {
   @override
@@ -7,6 +8,10 @@ class ProgramScreen extends StatefulWidget {
 }
 
 class _Program extends State<ProgramScreen> {
+  // ProgramData ProgramList = new ProgramData();
+  String buttonTest = 'Test';
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -37,6 +42,11 @@ class _Program extends State<ProgramScreen> {
                     style: TextStyle(color: Colors.red, fontFamily: 'Open'),
                   ),
                 ),
+                TextButton(
+                    child: Text(buttonTest),
+                    onPressed: () async {
+                      ProgramData.showData();
+                    }),
               ],
             ),
           )),
