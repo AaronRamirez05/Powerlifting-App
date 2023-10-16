@@ -53,6 +53,7 @@ dependencies:
   camera: ^0.9.7+1
   video_player: ^2.2.6 
   gallery_saver: ^2.3.2
+  mysql1: ^0.20.0
 
   #Validate Email
   email_validator: ^2.1.16
