@@ -145,78 +145,100 @@ class _Convert extends State<ConvertScreen> {
                       child: Text(
                         "Weight Converter",
                         key: Key('convertcheck'),
-                        style: TextStyle(color: Colors.red, fontFamily: 'Open'),
+                        style: TextStyle(color: Colors.red, fontFamily: 'Open', fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(height: 20),
-                    Container(
-                        color: Colors.white,
-                        height: 50,
-                        width: 200,
-                        child: TextFormField(
-                          controller: value,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              hintText: 'Enter the weight in pounds'),
-                          onChanged: (value) {
-                            setState(() {
-                              final weightsKg = converterTools.convert1(
-                                  value, conversion1, pounds);
-                              value2.text = weightsKg.toStringAsFixed(3);
-                              if (value == "") {
-                                value2.clear();
-                              }
-                              pounds = double.parse(value);
-                              //imagePathway(pounds);
-                              updateWeights(weightsKg);
-                            });
-                          },
-                          onEditingComplete: () {
-                            if (value.text.isEmpty) {
-                              value2.clear();
-                            }
-                            pounds = double.parse(value.text);
-                            //imagePathway(pounds);
-                            //updateWeights(pounds);
-                          },
-                        )),
-                    SizedBox(height: 50),
-                    Container(
-                        color: Colors.white,
-                        height: 50,
-                        width: 200,
-                        child: TextFormField(
-                            controller: value2,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                hintText: 'Enter the weight in kilograms'),
-                            onChanged: (value2) {
-                              setState(() {
-                                value.text = converterTools
-                                    .convert2(value2, conversion2, kilograms)
-                                    .toStringAsFixed(3);
-                                if (value2 == "") {
-                                  value.clear();
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            color: Colors.white,
+                            height: 50,
+                            width: 200,
+                            child: TextFormField(
+                              controller: value,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  hintText: 'Enter the weight in pounds'),
+                              onChanged: (value) {
+                                setState(() {
+                                  final weightsKg = converterTools.convert1(
+                                      value, conversion1, pounds);
+                                  value2.text = weightsKg.toStringAsFixed(3);
+                                  if (value == "") {
+                                    value2.clear();
+                                  }
+                                  pounds = double.parse(value);
+                                  //imagePathway(pounds);
+                                  updateWeights(weightsKg);
+                                });
+                              },
+                              onEditingComplete: () {
+                                if (value.text.isEmpty) {
+                                  value2.clear();
                                 }
                                 pounds = double.parse(value.text);
                                 //imagePathway(pounds);
-                                updateWeights(double.parse(value2));
-                              });
-                            },
-                            onEditingComplete: () {
-                              if (value2.text.isEmpty) {
-                                value.clear();
-                              }
-                              pounds = double.parse(value.text);
-                              //imagePathway(pounds);
-                            })),
-                    SizedBox(height: 100),
+                              },
+                            )),
+                        SizedBox(width: 10),
+                        Text("LB",
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                    SizedBox(height: 50),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            color: Colors.white,
+                            height: 50,
+                            width: 200,
+                            child: TextFormField(
+                                controller: value2,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                    hintText: 'Enter the weight in kilograms'),
+                                onChanged: (value2) {
+                                  setState(() {
+                                    value.text = converterTools
+                                        .convert2(
+                                            value2, conversion2, kilograms)
+                                        .toStringAsFixed(3);
+                                    if (value2 == "") {
+                                      value.clear();
+                                    }
+                                    pounds = double.parse(value.text);
+                                    //imagePathway(pounds);
+                                    updateWeights(double.parse(value2));
+                                  });
+                                },
+                                onEditingComplete: () {
+                                  if (value2.text.isEmpty) {
+                                    value.clear();
+                                  }
+                                  pounds = double.parse(value.text);
+                                  //imagePathway(pounds);
+                                })),
+                        SizedBox(width: 10), 
+                        Text("KG",
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                    SizedBox(height: 80),
                     Stack(alignment: Alignment.center, children: [
                       Container(width: 500, height: 25, color: Colors.grey),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: containerWeights),
                     ]),
+                    SizedBox(height: 20),
+                    Text("*The dumbell bar is 20 kilograms*",
+                            style: TextStyle(
+                                color: Colors.white)),
                   ],
                 ),
               )),
