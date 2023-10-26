@@ -128,17 +128,17 @@ class converterTools {
 }
 
 class ProgramData {
-  static Future<void> showData() async {
-    var settings = new ConnectionSettings(
-        host: 'sql5111.site4now.net',
-        port: 1433,
-        user: 'db_a94b6f_powerlift_admin',
-        db: 'db_a94b6f_powerlift',
-        password: 'Darkness5x5!');
+  List<String> programs = [];
 
-    var conn = await MySqlConnection.connect(settings);
+  void populateData() {
+    programs.add("Program 1");
+    programs.add("Program 2");
+    programs.add("Program 3");
+    programs.add("Program 4");
+    programs.add("Program 5");
+  }
 
-    var results = await conn.query('SELECT * FROM UserXProgramId');
-    print(results.toString());
+  void addData(String temp) {
+    programs.add(temp);
   }
 }

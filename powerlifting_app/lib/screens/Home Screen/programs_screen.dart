@@ -8,12 +8,19 @@ class ProgramScreen extends StatefulWidget {
 }
 
 class _Program extends State<ProgramScreen> {
-  // ProgramData ProgramList = new ProgramData();
-  String buttonTest = 'Test';
+  ProgramData temp = new ProgramData();
+  bool textFieldDisplayed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    temp.populateData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.black,
           leading: IconButton(
@@ -30,26 +37,102 @@ class _Program extends State<ProgramScreen> {
         backgroundColor: Colors.black,
         body: Container(
           child: Center(
-              child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 19.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  child: Text(
-                    "Programs",
-                    key: Key('programcheck'),
-                    style: TextStyle(color: Colors.red, fontFamily: 'Open'),
-                  ),
-                ),
-                TextButton(
-                    child: Text(buttonTest),
-                    onPressed: () async {
-                      ProgramData.showData();
-                    }),
-              ],
+              child: Column(children: <Widget>[
+            SizedBox(
+              height: 20,
             ),
-          )),
+            Row(children: <Widget>[
+              SizedBox(width: 300),
+              Container(
+                width: 35,
+                height: 35,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(30))),
+                child: IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.black,
+                      size: 30,
+                    )),
+              ),
+            ]),
+            SizedBox(height: 15),
+            Row(children: <Widget>[
+              SizedBox(width: 85),
+              Container(
+                width: 200,
+                height: 35,
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: TextField(
+                  style: TextStyle(fontSize: 14, fontFamily: 'Open'),
+                  key: Key("emailin-field"),
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                ),
+              ),
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.check_box,
+                    color: Colors.red,
+                    size: 30,
+                  )),
+            ]),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 19.0),
+              child: SingleChildScrollView(
+                  child: Container(
+                padding: EdgeInsets.only(left: 40, right: 40),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: temp.programs.length,
+                  separatorBuilder: (_, __) => const Divider(),
+                  itemBuilder: (context, int index) {
+                    return ListTile(
+                        title: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      height: 40,
+                      width: 150,
+                      alignment: Alignment.center,
+                      child: Row(children: <Widget>[
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Icon(
+                          Icons.note_rounded,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Text(
+                          temp.programs[index],
+                          style: TextStyle(
+                              color: Colors.black, fontFamily: 'Open'),
+                        ),
+                      ]),
+                    ));
+                  },
+                ),
+              )),
+            )
+          ])),
         ));
   }
 }
