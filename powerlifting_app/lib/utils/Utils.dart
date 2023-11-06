@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:youtube_data_api/models/video_data.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,6 +18,21 @@ class Utils {
     messengerKey.currentState!
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
+  }
+  static showToast(
+      {required String msg,
+        Color? textColor,
+        Color? backgroundColor,
+        bool long = false}) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: long ? Toast.LENGTH_LONG : Toast.LENGTH_LONG,
+      gravity: ToastGravity.SNACKBAR,
+      timeInSecForIosWeb: 1,
+      backgroundColor: backgroundColor ?? Colors.white,
+      textColor: textColor ?? Colors.black,
+      fontSize: 12,
+    );
   }
 }
 
