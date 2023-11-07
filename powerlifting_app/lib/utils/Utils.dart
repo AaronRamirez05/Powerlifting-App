@@ -7,6 +7,10 @@ import 'package:powerlifting_app/screens/Home Screen/Tutorial Screen/tutorials_s
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'dart:async';
 import 'package:mysql1/mysql1.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+import 'package:powerlifting_app/utils/post.dart';
+import 'package:http/http.dart' as http;
 
 class Utils {
   static final messengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -19,11 +23,12 @@ class Utils {
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
+
   static showToast(
       {required String msg,
-        Color? textColor,
-        Color? backgroundColor,
-        bool long = false}) {
+      Color? textColor,
+      Color? backgroundColor,
+      bool long = false}) {
     Fluttertoast.showToast(
       msg: msg,
       toastLength: long ? Toast.LENGTH_LONG : Toast.LENGTH_LONG,
@@ -156,5 +161,17 @@ class ProgramData {
 
   void addData(String temp) {
     programs.add(temp);
+  }
+}
+
+class RemoteService {
+  Future<List<Post>?> getPosts() async {
+    var client = http.Client();
+    var uri = Uri.parse('http://api.3eam.net/powerlifting');
+    var response = await client.get(uri);
+    if (response.statusCode == 200) {
+      var json = response.body;
+      postFromJson(json);
+    }
   }
 }
