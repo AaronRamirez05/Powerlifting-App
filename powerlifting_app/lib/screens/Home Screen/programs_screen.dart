@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 import 'package:http/http.dart' as http;
+import 'package:powerlifting_app/utils/post.dart';
 
 class ProgramScreen extends StatefulWidget {
   @override
@@ -12,10 +13,22 @@ class _Program extends State<ProgramScreen> {
   ProgramData temp = new ProgramData();
   bool textFieldDisplayed = false;
 
+  List<Post>? posts;
+  var isLoaded = false;
+
   @override
   void initState() {
     super.initState();
-    temp.populateData();
+    getData();
+  }
+
+  getData() async {
+    posts = await RemoteService().getPosts();
+    if (posts != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
   }
 
   @override
@@ -98,39 +111,48 @@ class _Program extends State<ProgramScreen> {
               child: SingleChildScrollView(
                   child: Container(
                 padding: EdgeInsets.only(left: 40, right: 40),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: temp.programs.length,
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemBuilder: (context, int index) {
-                    return ListTile(
-                        title: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      height: 40,
-                      width: 150,
-                      alignment: Alignment.center,
-                      child: Row(children: <Widget>[
-                        SizedBox(
-                          width: 15,
+                child: posts == null
+                    ? CircularProgressIndicator()
+                    : Visibility(
+                        replacement: const Center(
+                          child: CircularProgressIndicator(),
                         ),
-                        Icon(
-                          Icons.note_rounded,
-                          color: Colors.black,
+                        visible: isLoaded,
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          itemCount: posts!.length,
+                          separatorBuilder: (_, __) => const Divider(),
+                          itemBuilder: (context, int index) {
+                            return ListTile(
+                                title: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              height: 40,
+                              width: 150,
+                              alignment: Alignment.center,
+                              child: Row(children: <Widget>[
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Icon(
+                                  Icons.note_rounded,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(
+                                  width: 50,
+                                ),
+                                Text(
+                                  temp.programs[index],
+                                  style: TextStyle(
+                                      color: Colors.black, fontFamily: 'Open'),
+                                ),
+                              ]),
+                            ));
+                          },
                         ),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Text(
-                          temp.programs[index],
-                          style: TextStyle(
-                              color: Colors.black, fontFamily: 'Open'),
-                        ),
-                      ]),
-                    ));
-                  },
-                ),
+                      ),
               )),
             )
           ])),

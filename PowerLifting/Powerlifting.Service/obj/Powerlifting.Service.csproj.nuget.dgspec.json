@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aaron\\Desktop\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj": {}
+    "C:\\Users\\Aaron\\Desktop\\Senior-Project-Powerlifting-App\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aaron\\Desktop\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj": {
+    "C:\\Users\\Aaron\\Desktop\\Senior-Project-Powerlifting-App\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aaron\\Desktop\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Aaron\\Desktop\\Senior-Project-Powerlifting-App\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj",
         "projectName": "Powerlifting.Service",
-        "projectPath": "C:\\Users\\Aaron\\Desktop\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj",
+        "projectPath": "C:\\Users\\Aaron\\Desktop\\Senior-Project-Powerlifting-App\\PowerLifting\\Powerlifting.Service\\Powerlifting.Service.csproj",
         "packagesPath": "C:\\Users\\Aaron\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aaron\\Desktop\\PowerLifting\\Powerlifting.Service\\obj\\",
+        "outputPath": "C:\\Users\\Aaron\\Desktop\\Senior-Project-Powerlifting-App\\PowerLifting\\Powerlifting.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
