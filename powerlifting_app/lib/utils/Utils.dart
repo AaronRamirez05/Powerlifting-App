@@ -148,30 +148,28 @@ class converterTools {
   }
 }
 
-class ProgramData {
-  List<String> programs = [];
-
-  void populateData() {
-    programs.add("Program 1");
-    programs.add("Program 2");
-    programs.add("Program 3");
-    programs.add("Program 4");
-    programs.add("Program 5");
-  }
-
-  void addData(String temp) {
-    programs.add(temp);
-  }
-}
-
 class RemoteService {
   Future<List<Post>?> getPosts() async {
     var client = http.Client();
+
     var uri = Uri.parse('http://api.3eam.net/powerlifting');
-    var response = await client.get(uri);
-    if (response.statusCode == 200) {
-      var json = response.body;
-      postFromJson(json);
+    try {
+      var response = await client.get(uri);
+
+      if (response.statusCode == 200) {
+        var json = response.body;
+        // Parse the JSON and return the result
+        return postFromJson(json);
+      } else {
+        // Handle non-200 status codes here
+        print('Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any exceptions that might occur during the HTTP request
+      print('Error during HTTP request: $e');
+    } finally {
+      // Make sure to close the client to free up resources
+      client.close();
     }
   }
 }
