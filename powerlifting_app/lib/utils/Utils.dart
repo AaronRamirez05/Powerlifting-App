@@ -149,10 +149,10 @@ class converterTools {
 }
 
 class RemoteService {
-  Future<List<Post>?> getPosts() async {
+  Future<List<Post>?> getPosts(String? uid) async {
     var client = http.Client();
 
-    var uri = Uri.parse('http://api.3eam.net/powerlifting');
+    var uri = Uri.parse('http://api.3eam.net/powerlifting/$uid');
     try {
       var response = await client.get(uri);
 
@@ -163,6 +163,33 @@ class RemoteService {
       } else {
         // Handle non-200 status codes here
         print('Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any exceptions that might occur during the HTTP request
+      print('Error during HTTP request: $e');
+    } finally {
+      // Make sure to close the client to free up resources
+      client.close();
+    }
+  }
+
+  Future<bool?> createProgram(String? uid) async {
+    var client = http.Client();
+
+    var uri = Uri.parse('http://api.3eam.net/powerlifting/user/create');
+    try {
+      var response = await client.post(uri,
+          headers: {"Content-type": "application/json"},
+          body: jsonEncode({"UserId": '$uid'}));
+
+      if (response.statusCode == 200) {
+        var json = response.body;
+        // Parse the JSON and return the result
+        return true;
+      } else {
+        // Handle non-200 status codes here
+        print('Request failed with status: ${response.statusCode}');
+        return false;
       }
     } catch (e) {
       // Handle any exceptions that might occur during the HTTP request

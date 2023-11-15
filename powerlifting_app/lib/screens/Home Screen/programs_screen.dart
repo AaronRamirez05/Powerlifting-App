@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:powerlifting_app/utils/post.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProgramScreen extends StatefulWidget {
   @override
@@ -22,7 +24,8 @@ class _Program extends State<ProgramScreen> {
   }
 
   void getData() async {
-    posts = await RemoteService().getPosts();
+    posts =
+        await RemoteService().getPosts(FirebaseAuth.instance.currentUser?.uid);
     if (posts != null) {
       setState(() {
         isLoaded = true;
@@ -66,7 +69,12 @@ class _Program extends State<ProgramScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(30))),
                 child: IconButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () {},
+                    onPressed: () {
+                      RemoteService().createProgram(
+                          FirebaseAuth.instance.currentUser?.uid);
+
+                      //getData();
+                    },
                     icon: Icon(
                       Icons.add,
                       color: Colors.black,
