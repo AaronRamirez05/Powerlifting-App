@@ -10,7 +10,6 @@ class ProgramScreen extends StatefulWidget {
 }
 
 class _Program extends State<ProgramScreen> {
-  ProgramData temp = new ProgramData();
   bool textFieldDisplayed = false;
 
   List<Post>? posts;
@@ -22,16 +21,17 @@ class _Program extends State<ProgramScreen> {
     getData();
   }
 
-  getData() async {
+  void getData() async {
     posts = await RemoteService().getPosts();
     if (posts != null) {
       setState(() {
         isLoaded = true;
       });
+    } else {
+      print(posts);
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -144,7 +144,7 @@ class _Program extends State<ProgramScreen> {
                                   width: 50,
                                 ),
                                 Text(
-                                  temp.programs[index],
+                                  posts![index].programId.toString(),
                                   style: TextStyle(
                                       color: Colors.black, fontFamily: 'Open'),
                                 ),
