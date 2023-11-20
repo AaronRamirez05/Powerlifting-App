@@ -198,5 +198,14 @@ class RemoteService {
       // Make sure to close the client to free up resources
       client.close();
     }
+
+
   }
+
+  Stream<List<Post>?> getPostsStream(String? userId) {
+    // Implement your logic to get posts using streams
+    // Replace the following line with your actual implementation
+    // This is just a placeholder.
+    return Stream.fromFuture(getPosts(userId));
+    }
 }
