@@ -71,7 +71,7 @@ class _Program extends State<ProgramScreen> {
                     padding: EdgeInsets.zero,
                     onPressed: () {
                       RemoteService().createProgram(
-                          FirebaseAuth.instance.currentUser?.uid);
+                          FirebaseAuth.instance.currentUser?.uid, "temp");
 
                       //getData();
                     },
@@ -152,7 +152,7 @@ class _Program extends State<ProgramScreen> {
                                   width: 50,
                                 ),
                                 Text(
-                                  posts![index].programId.toString(),
+                                  posts![index].name ?? "NULL",
                                   style: TextStyle(
                                       color: Colors.black, fontFamily: 'Open'),
                                 ),
