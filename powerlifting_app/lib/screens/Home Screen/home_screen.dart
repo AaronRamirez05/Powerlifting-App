@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/main.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/Tutorial%20Screen/tutorials_screen.dart';
-import 'package:powerlifting_app/screens/Home%20Screen/achievements_screens.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/programs_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/recordsessions_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/weightconverter_screen.dart';
@@ -234,6 +233,7 @@ class _home extends State<homeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    SizedBox(width: 50),
                     Container(
                         height: 60,
                         width: 60,
@@ -268,28 +268,12 @@ class _home extends State<homeScreen> {
                           iconSize: 40,
                         )),
                     SizedBox(width: 50),
-                    Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(35))),
-                        child: IconButton(
-                          key: Key('achievebtn'),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AchieveScreen()));
-                          },
-                          icon: Icon(Icons.emoji_events),
-                          iconSize: 40,
-                        )),
                   ],
                 ),
                 SizedBox(height: 8),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 46),
+                    SizedBox(width: 98),
                     Text(
                       '  Weight\nConverter',
                       style: TextStyle(fontFamily: 'open', color: Colors.white),
@@ -300,10 +284,6 @@ class _home extends State<homeScreen> {
                       style: TextStyle(fontFamily: 'open', color: Colors.white),
                     ),
                     SizedBox(width: 60),
-                    Text(
-                      'Goals\n',
-                      style: TextStyle(fontFamily: 'open', color: Colors.white),
-                    ),
                   ],
                 ),
                 SizedBox(

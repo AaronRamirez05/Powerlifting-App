@@ -111,17 +111,6 @@ void main() {
       expect(await driver.getText(checkpage), 'My Account');
       final backbtn = find.byValueKey('back-cups');
       await driver.tap(backbtn);
-    });
-
-    test("Achievements screen happy paths", () async {
-      final accountbtn = find.byValueKey('achievebtn');
-      await driver.tap(accountbtn);
-
-      final checkpage = find.byValueKey('achievecheck');
-
-      expect(await driver.getText(checkpage), 'Achievements');
-      final backbtn = find.byValueKey('back-cups');
-      await driver.tap(backbtn);
       final signoutbtn = find.byValueKey('Sign-Out');
       await driver.tap(signoutbtn);
     });

@@ -173,14 +173,14 @@ class RemoteService {
     }
   }
 
-  Future<bool?> createProgram(String? uid) async {
+  Future<bool?> createProgram(String? uid, String Name) async {
     var client = http.Client();
 
     var uri = Uri.parse('http://api.3eam.net/powerlifting/user/create');
     try {
       var response = await client.post(uri,
           headers: {"Content-type": "application/json"},
-          body: jsonEncode({"UserId": '$uid'}));
+          body: jsonEncode({"UserId": '$uid', "name": '$Name'}));
 
       if (response.statusCode == 200) {
         var json = response.body;
