@@ -45,7 +45,7 @@ class _ProgramWorkouts extends State<ProgramWorkouts> {
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 19.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
                   child: Text(
@@ -66,14 +66,17 @@ class _ProgramWorkouts extends State<ProgramWorkouts> {
                               Day = PrintProgram().getDay(index);
                               return ListTile(
                                 title: Container(
-                                  child: Column(children: <Widget>[
-                                    Text(
-                                      Day,
-                                      style: TextStyle(
-                                          color: Colors.red,
-                                          fontFamily: 'Open'),
-                                    ),
-                                  ]),
+                                  child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          Day,
+                                          style: TextStyle(
+                                              color: Colors.red,
+                                              fontFamily: 'Open'),
+                                        ),
+                                      ],
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start),
                                 ),
                               );
                             })),

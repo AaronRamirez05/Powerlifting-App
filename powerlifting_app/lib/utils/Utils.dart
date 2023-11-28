@@ -215,19 +215,19 @@ class PrintProgram {
   String getDay(int index) {
     String temp = "";
     try {
-      if (index == 1) {
+      if (index == 0) {
         temp = "Monday";
-      } else if (index == 2) {
+      } else if (index == 1) {
         temp = "Tuesday";
-      } else if (index == 3) {
+      } else if (index == 2) {
         temp = "Wednesday";
-      } else if (index == 4) {
+      } else if (index == 3) {
         temp = "Thursday";
-      } else if (index == 5) {
+      } else if (index == 4) {
         temp = "Friday";
-      } else if (index == 6) {
+      } else if (index == 5) {
         temp = "Saturday";
-      } else if (index == 7) {
+      } else if (index == 6) {
         temp = "Sunday";
       }
 
