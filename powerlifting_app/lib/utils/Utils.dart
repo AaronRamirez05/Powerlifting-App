@@ -198,8 +198,6 @@ class RemoteService {
       // Make sure to close the client to free up resources
       client.close();
     }
-
-
   }
 
   Stream<List<Post>?> getPostsStream(String? userId) {
@@ -207,5 +205,35 @@ class RemoteService {
     // Replace the following line with your actual implementation
     // This is just a placeholder.
     return Stream.fromFuture(getPosts(userId));
+  }
+}
+
+class PrintProgram {
+  List<List<String>> Days =
+      List.generate(7, (index) => List<String>.filled(7, ""));
+
+  String getDay(int index) {
+    String temp = "";
+    try {
+      if (index == 1) {
+        temp = "Monday";
+      } else if (index == 2) {
+        temp = "Tuesday";
+      } else if (index == 3) {
+        temp = "Wednesday";
+      } else if (index == 4) {
+        temp = "Thursday";
+      } else if (index == 5) {
+        temp = "Friday";
+      } else if (index == 6) {
+        temp = "Saturday";
+      } else if (index == 7) {
+        temp = "Sunday";
+      }
+
+      return temp;
+    } catch (exc) {
+      return exc.toString();
     }
+  }
 }

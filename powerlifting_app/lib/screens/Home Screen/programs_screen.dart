@@ -5,6 +5,7 @@ import 'package:powerlifting_app/utils/Utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:powerlifting_app/utils/post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:powerlifting_app/screens/Home Screen/program_workouts.dart';
 
 class ProgramScreen extends StatefulWidget {
   @override
@@ -57,13 +58,8 @@ class _Program extends State<ProgramScreen> {
         body: Container(
           child: Center(
               child: Column(children: <Widget>[
-
-                
-
-
-
             SizedBox(
-              height: 20,
+              height: 5,
             ),
             Row(children: <Widget>[
               SizedBox(width: 300),
@@ -90,7 +86,7 @@ class _Program extends State<ProgramScreen> {
             ]),
             SizedBox(height: 15),
             Row(children: <Widget>[
-              SizedBox(width: 85),
+              SizedBox(width: 100),
               Visibility(
                 visible: textFieldDisplayed,
                 child: Container(
@@ -106,9 +102,9 @@ class _Program extends State<ProgramScreen> {
                     onChanged: (value) {
                       setState(() {
                         if (progamData.text != "" && progamData.text != "")
-                            interacts = true;
-                          else
-                            interacts = false;
+                          interacts = true;
+                        else
+                          interacts = false;
                       });
                     },
                     decoration: InputDecoration(
@@ -117,45 +113,47 @@ class _Program extends State<ProgramScreen> {
                   ),
                 ),
               ),
-              SizedBox(width: 20,),
+              SizedBox(
+                width: 20,
+              ),
               Visibility(
                 visible: textFieldDisplayed,
-                child: 
-                Container(
-                width: 35,
-                height: 35,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {
-                      setState(() {
-                        (!interacts) ? null : RemoteService().createProgram(
-                          FirebaseAuth.instance.currentUser?.uid, progamData.text);
-                        textFieldDisplayed = false;
-                        interacts = false;
+                child: Container(
+                  width: 35,
+                  height: 35,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        setState(() {
+                          (!interacts)
+                              ? null
+                              : RemoteService().createProgram(
+                                  FirebaseAuth.instance.currentUser?.uid,
+                                  progamData.text);
+                          textFieldDisplayed = false;
+                          interacts = false;
 
-                        getData();
-                        
-                      });
-                    },
-                    icon: Icon(
-                      Icons.check,
-                      color:(interacts) ? Colors.white : Colors.black,
-                      size: 30,
-                    )),
-              ),
+                          getData();
+                        });
+                      },
+                      icon: Icon(
+                        Icons.check,
+                        color: (interacts) ? Colors.white : Colors.black,
+                        size: 30,
+                      )),
+                ),
               ),
             ]),
             SizedBox(
-              height: 30,
+              height: 15,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 19.0),
               child: SingleChildScrollView(
-              
                   child: Container(
                 padding: EdgeInsets.only(left: 40, right: 40),
                 child: posts == null
@@ -165,41 +163,60 @@ class _Program extends State<ProgramScreen> {
                           child: CircularProgressIndicator(),
                         ),
                         visible: isLoaded,
-                        child: ListView.separated(
-                          shrinkWrap: true,
-                          itemCount: posts!.length,
-                          separatorBuilder: (_, __) => const Divider(),
-                          itemBuilder: (context, int index) {
-                            return ListTile(
-                                title: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                              height: 40,
-                              width: 150,
-                              alignment: Alignment.center,
-                              child: Row(children: <Widget>[
-                                SizedBox(
-                                  width: 15,
+                        child: Container(
+                          width: 250,
+                          height: 500,
+                          child: ListView.separated(
+                            shrinkWrap: true,
+                            itemCount: posts!.length,
+                            separatorBuilder: (_, __) => const Divider(),
+                            itemBuilder: (context, int index) {
+                              return ListTile(
+                                title: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.red),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            15.0), // Adjust the radius as needed
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProgramWorkouts(
+                                                    argument:
+                                                        posts![index].name)));
+                                  },
+                                  child: Row(children: <Widget>[
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Icon(
+                                      Icons.note_rounded,
+                                      color: Colors.black,
+                                    ),
+                                    SizedBox(
+                                      width: 50,
+                                    ),
+                                    Text(
+                                      posts![index].name ?? "NULL",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: 'Open'),
+                                    ),
+                                  ]),
                                 ),
-                                Icon(
-                                  Icons.note_rounded,
-                                  color: Colors.black,
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                Text(
-                                  posts![index].name ?? "NULL",
-                                  style: TextStyle(
-                                      color: Colors.black, fontFamily: 'Open'),
-                                ),
-                              ]),
-                            ));
-                          },
-                        ),
-                      ),
+                              );
+                            },
+                          ),
+                        )),
               )),
             )
           ])),
