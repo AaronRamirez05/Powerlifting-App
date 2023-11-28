@@ -38,7 +38,7 @@ class Account extends State<UpdateEmailScreen> {
         isLoading = true;
       });
       bool success = await updateEmail(
-          email: emailController.text.trim());
+          newEmail: emailController.text.trim());
 
       setState(() {
         isLoading = false;
@@ -50,15 +50,28 @@ class Account extends State<UpdateEmailScreen> {
   }
 
   Future<bool> updateEmail({
-      required String email}) async {
+    required String newEmail,
+  }) async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
+
     try {
-      await _auth.currentUser!.updateEmail(email);
+      // Check if the new email is already associated with another account
+      var methods = await _auth.fetchSignInMethodsForEmail(newEmail);
+
+      if (methods.isNotEmpty) {
+        // Email is already in use by another account
+        Utils.showSnackBar('Email is already in use by another user.');
+        return false;
+      }
+
+      // Update the email if it's not in use
+      await _auth.currentUser!.updateEmail(newEmail);
+      Utils.showSnackBar('Email updated successfully.');
       return true;
-    } on FirebaseAuthException catch (e, stackTrace) {
+    } on FirebaseAuthException catch (e) {
       Utils.showSnackBar(e.message);
       return false;
-    } catch (e, stackTrace) {
+    } catch (e) {
       Utils.showSnackBar(e.toString());
       return false;
     }

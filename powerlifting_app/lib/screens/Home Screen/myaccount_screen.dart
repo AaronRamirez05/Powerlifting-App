@@ -9,7 +9,8 @@ import '../../../Common/common_widgets/validator.dart';
 import '../../../utils/Utils.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+  AccountScreen({Key? key}) : super(key: key);
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +49,15 @@ class AccountScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 45,
                   ),
-
+                  Text("Current Email: ${user.email!}", style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Open',
+                          fontSize: 16)),
+                  SizedBox(
+                    height: 45,
+                  ),
                   CustomButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
