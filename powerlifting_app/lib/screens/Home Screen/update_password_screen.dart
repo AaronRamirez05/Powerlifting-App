@@ -16,10 +16,12 @@ class UpdatePasswordScreen extends StatefulWidget {
 
 class Account extends State<UpdatePasswordScreen> {
   final passController = TextEditingController();
+  final confirmPassController = TextEditingController();
   final oldController = TextEditingController();
   bool isLoading = false;
-  bool passObscure=true;
-  bool passObscure2=true;
+  bool passObscure = true;
+  bool passObscure2 = true;
+  bool passObscure3 = true;
 
   final formKey = GlobalKey<FormState>();
   final user = FirebaseAuth.instance.currentUser!;
@@ -28,32 +30,38 @@ class Account extends State<UpdatePasswordScreen> {
   void dispose() {
     passController.dispose();
     oldController.dispose();
+    confirmPassController.dispose();
     super.dispose();
   }
 
   update() async {
     FocusManager.instance.primaryFocus!.unfocus();
     if (formKey.currentState!.validate()) {
-    setState(() {
+      if (passController.text != confirmPassController.text) {
+        Utils.showToast(msg: "Your New Password Doesn't Match",textColor: Colors.red);
+        return;
+      }
+      setState(() {
         isLoading = true;
       });
       bool success = await updatePassword(
-          currentPassword: oldController.text.trim(),
-          newPassword: passController.text.trim(),);
+        currentPassword: oldController.text.trim(),
+        newPassword: passController.text.trim(),
+      );
 
       setState(() {
         isLoading = false;
       });
-      if(success){
+      if (success) {
         Utils.showToast(msg: "Password Updated successfully");
       }
-
     }
   }
 
-  Future<bool> updatePassword(
-      {required String currentPassword,
-      required String newPassword,}) async {
+  Future<bool> updatePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     try {
       var user = _auth.currentUser!;
@@ -74,7 +82,7 @@ class Account extends State<UpdatePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>FocusManager.instance.primaryFocus!.unfocus(),
+      onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black,
@@ -114,7 +122,6 @@ class Account extends State<UpdatePasswordScreen> {
                         SizedBox(
                           height: 15,
                         ),
-
                         CustomTextField(
                           controller: oldController,
                           hintText: 'Enter old password',
@@ -123,27 +130,29 @@ class Account extends State<UpdatePasswordScreen> {
                           obscure: passObscure,
                           tailingIcon: passObscure == false
                               ? InkWell(
-                              onTap: () {
-                                setState(() {
-                                  passObscure = !passObscure;
-                                });
-                              },
-                              child: Icon(
-                                CupertinoIcons.eye,
-                                color:Colors.black45,
-                                size: 20,
-                              ))
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    setState(() {
+                                      passObscure = !passObscure;
+                                    });
+                                  },
+                                  child: Icon(
+                                    CupertinoIcons.eye,
+                                    color: Colors.black45,
+                                    size: 20,
+                                  ))
                               : InkWell(
-                              onTap: () {
-                                setState(() {
-                                  passObscure = !passObscure;
-                                });
-                              },
-                              child: Icon(
-                                CupertinoIcons.eye_slash,
-                                color:Colors.black,
-                                size: 20,
-                              )),
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    setState(() {
+                                      passObscure = !passObscure;
+                                    });
+                                  },
+                                  child: Icon(
+                                    CupertinoIcons.eye_slash,
+                                    color: Colors.black,
+                                    size: 20,
+                                  )),
                         ),
                         CustomTextField(
                           controller: passController,
@@ -153,27 +162,61 @@ class Account extends State<UpdatePasswordScreen> {
                           obscure: passObscure2,
                           tailingIcon: passObscure2 == false
                               ? InkWell(
-                              onTap: () {
-                                setState(() {
-                                  passObscure2 = !passObscure2;
-                                });
-                              },
-                              child: Icon(
-                                CupertinoIcons.eye,
-                                color:Colors.black45,
-                                size: 20,
-                              ))
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    setState(() {
+                                      passObscure2 = !passObscure2;
+                                    });
+                                  },
+                                  child: Icon(
+                                    CupertinoIcons.eye,
+                                    color: Colors.black45,
+                                    size: 20,
+                                  ))
                               : InkWell(
-                              onTap: () {
-                                setState(() {
-                                  passObscure2= !passObscure2;
-                                });
-                              },
-                              child: Icon(
-                                CupertinoIcons.eye_slash,
-                                color:Colors.black,
-                                size: 20,
-                              )),
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    setState(() {
+                                      passObscure2 = !passObscure2;
+                                    });
+                                  },
+                                  child: Icon(
+                                    CupertinoIcons.eye_slash,
+                                    color: Colors.black,
+                                    size: 20,
+                                  )),
+                        ),
+                        CustomTextField(
+                          controller: confirmPassController,
+                          hintText: 'Confirm new password',
+                          label: 'Confirm Password',
+                          validatorFn: passValidator,
+                          obscure: passObscure3,
+                          tailingIcon: passObscure3 == false
+                              ? InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      passObscure3 = !passObscure3;
+                                    });
+                                  },
+                                  splashColor: Colors.transparent,
+                                  child: Icon(
+                                    CupertinoIcons.eye,
+                                    color: Colors.black45,
+                                    size: 20,
+                                  ))
+                              : InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      passObscure3 = !passObscure3;
+                                    });
+                                  },
+                                  splashColor: Colors.transparent,
+                                  child: Icon(
+                                    CupertinoIcons.eye_slash,
+                                    color: Colors.black,
+                                    size: 20,
+                                  )),
                         ),
                         SizedBox(
                           height: 15,
