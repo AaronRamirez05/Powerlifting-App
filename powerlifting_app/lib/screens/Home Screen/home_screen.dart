@@ -10,6 +10,10 @@ import 'package:powerlifting_app/screens/Home Screen/myaccount_screen.dart';
 class homeScreen extends StatefulWidget {
   @override
   _home createState() => _home();
+  homeScreen({Key? key, this.input, this.input2, this.input3}) : super(key: key);
+  String? input;
+  String? input2;
+  String? input3;
 }
 
 class _home extends State<homeScreen> {
@@ -65,7 +69,7 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text('440.925',
+                                  Text(widget.input == null ? '0 LB' : '${widget.input} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -100,7 +104,7 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text('300',
+                                  Text(widget.input2 == null ? '0 LB' : '${widget.input2} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -135,7 +139,7 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text('500 LB',
+                                  Text(widget.input3 == null ? '0 LB' : '${widget.input3} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
