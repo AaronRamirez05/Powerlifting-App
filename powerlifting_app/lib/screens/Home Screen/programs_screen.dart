@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/screens/Home Screen/home_screen.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/create_program_screen.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:powerlifting_app/utils/post.dart';
@@ -137,8 +138,20 @@ class _Program extends State<ProgramScreen> {
                           textFieldDisplayed = false;
                           interacts = false;
 
-                          getData();
+                          //getData();
                         });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    CreateProgramScreen(progamData.text)));
+
+/*
+                         Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                           builder: (_) => CreateProgramScreen(argument: progamData.text)));
+                           */
                       },
                       icon: Icon(
                         Icons.check,
@@ -165,7 +178,7 @@ class _Program extends State<ProgramScreen> {
                         visible: isLoaded,
                         child: Container(
                           width: 250,
-                          height: 500,
+                          height: 475,
                           child: ListView.separated(
                             shrinkWrap: true,
                             itemCount: posts!.length,
