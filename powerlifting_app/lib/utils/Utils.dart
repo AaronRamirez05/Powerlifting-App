@@ -200,6 +200,50 @@ class RemoteService {
     }
   }
 
+  Future<bool?> createWorkout(
+      String? uid,
+      String Day,
+      String WorkoutName,
+      String SRR1,
+      String SRR2,
+      String SRR3,
+      String SRR4,
+      String ProgramName) async {
+    var client = http.Client();
+
+    var uri = Uri.parse('http://api.3eam.net/powerlifting/user/createWorkout');
+    try {
+      var response = await client.post(uri,
+          headers: {"Content-type": "application/json"},
+          body: jsonEncode({
+            "Day": '$Day',
+            "WorkoutName": '$WorkoutName',
+            "SRRWeek1": '$SRR1',
+            "SRRWeek2": '$SRR2',
+            "SRRWeek3": '$SRR3',
+            "SRRWeek4": '$SRR4',
+            "ProgramName": '$ProgramName',
+            "UserId": '$uid'
+          }));
+
+      if (response.statusCode == 200) {
+        var json = response.body;
+        // Parse the JSON and return the result
+        return true;
+      } else {
+        // Handle non-200 status codes here
+        print('Request failed with status: ${response.statusCode}');
+        return false;
+      }
+    } catch (e) {
+      // Handle any exceptions that might occur during the HTTP request
+      print('Error during HTTP request: $e');
+    } finally {
+      // Make sure to close the client to free up resources
+      client.close();
+    }
+  }
+
   Stream<List<Post>?> getPostsStream(String? userId) {
     // Implement your logic to get posts using streams
     // Replace the following line with your actual implementation

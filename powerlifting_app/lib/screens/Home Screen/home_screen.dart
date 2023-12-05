@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:powerlifting_app/main.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/Tutorial%20Screen/tutorials_screen.dart';
+import 'package:powerlifting_app/screens/Home%20Screen/create_program_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/programs_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/recordsessions_screen.dart';
 import 'package:powerlifting_app/screens/Home%20Screen/weightconverter_screen.dart';
@@ -10,7 +11,8 @@ import 'package:powerlifting_app/screens/Home Screen/myaccount_screen.dart';
 class homeScreen extends StatefulWidget {
   @override
   _home createState() => _home();
-  homeScreen({Key? key, this.input, this.input2, this.input3}) : super(key: key);
+  homeScreen({Key? key, this.input, this.input2, this.input3})
+      : super(key: key);
   String? input;
   String? input2;
   String? input3;
@@ -69,7 +71,10 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text(widget.input == null || widget.input == '' ? '0 LB' : '${widget.input} lB',
+                                  Text(
+                                      widget.input == null || widget.input == ''
+                                          ? '0 LB'
+                                          : '${widget.input} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -104,7 +109,11 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text(widget.input2 == null || widget.input2 == '' ? '0 LB' : '${widget.input2} lB',
+                                  Text(
+                                      widget.input2 == null ||
+                                              widget.input2 == ''
+                                          ? '0 LB'
+                                          : '${widget.input2} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -139,7 +148,11 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text(widget.input3 == null || widget.input3 == '' ? '0 LB' : '${widget.input3} lB',
+                                  Text(
+                                      widget.input3 == null ||
+                                              widget.input3 == ''
+                                          ? '0 LB'
+                                          : '${widget.input3} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -159,6 +172,18 @@ class _home extends State<homeScreen> {
                         ),
                       ],
                     )),
+                //TESTINGGGGG
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => CreateProgramScreen("dfdf"))));
+                    },
+                    child: Text(
+                      'asdfadf',
+                      key: Key('asdf'),
+                      style: TextStyle(color: Colors.white, fontFamily: 'Open'),
+                    )),
+
                 SizedBox(height: 60),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

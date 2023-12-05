@@ -11,7 +11,8 @@ import '../../../utils/Utils.dart';
 class AccountScreen extends StatefulWidget {
   @override
   _Account createState() => _Account();
-  AccountScreen({Key? key, this.input, this.input2, this.input3}) : super(key: key);
+  AccountScreen({Key? key, this.input, this.input2, this.input3})
+      : super(key: key);
   String? input;
   String? input2;
   String? input3;
@@ -26,7 +27,7 @@ class _Account extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>FocusManager.instance.primaryFocus!.unfocus(),
+      onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black,
@@ -52,17 +53,16 @@ class _Account extends State<AccountScreen> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      "My Account",
+                      "Create Program",
                       style: TextStyle(
-                          color: Colors.red,
-                          fontFamily: 'Open',
-                          fontSize: 16),
+                          color: Colors.red, fontFamily: 'Open', fontSize: 16),
                     ),
                   ),
                   SizedBox(
                     height: 45,
                   ),
-                  Text("Current Email: ${user.email!}", style: TextStyle(
+                  Text("Current Email: ${user.email!}",
+                      style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Open',
                           fontSize: 16)),
@@ -70,80 +70,93 @@ class _Account extends State<AccountScreen> {
                     height: 25,
                   ),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 80),
-                        Container(
-                            color: Colors.white,
-                            height: 50,
-                            width: 150,
-                            child: TextFormField(
-                              controller: value,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                  hintText: 'Enter weight in LB'),
-                            )),
-                        SizedBox(width: 10),
-                        Text("Squat",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 80),
-                        Container(
-                            color: Colors.white,
-                            height: 50,
-                            width: 150,
-                            child: TextFormField(
-                                controller: value2,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    hintText: 'Enter weight in LB'),
-                            )),
-                        SizedBox(width: 10), 
-                        Text("Bench",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 80),
-                        Container(
-                            color: Colors.white,
-                            height: 50,
-                            width: 150,
-                            child: TextFormField(
-                                controller: value3,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    hintText: 'Enter weight in LB'),
-                            )),
-                        SizedBox(width: 10), 
-                        Text("Deadlift",
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
-                      ],
-                    ),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 80),
+                      Container(
+                          color: Colors.white,
+                          height: 50,
+                          width: 150,
+                          child: TextFormField(
+                            controller: value,
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                InputDecoration(hintText: 'Enter weight in LB'),
+                          )),
+                      SizedBox(width: 10),
+                      Text("Squat",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold))
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 80),
+                      Container(
+                          color: Colors.white,
+                          height: 50,
+                          width: 150,
+                          child: TextFormField(
+                            controller: value2,
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                InputDecoration(hintText: 'Enter weight in LB'),
+                          )),
+                      SizedBox(width: 10),
+                      Text("Bench",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold))
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 80),
+                      Container(
+                          color: Colors.white,
+                          height: 50,
+                          width: 150,
+                          child: TextFormField(
+                            controller: value3,
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                InputDecoration(hintText: 'Enter weight in LB'),
+                          )),
+                      SizedBox(width: 10),
+                      Text("Deadlift",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold))
+                    ],
+                  ),
                   SizedBox(height: 10),
                   CustomButton(
                     onPressed: () {
-                      if (widget.input == "" || widget.input2 == "" || widget.input == "") {
+                      if (widget.input == "" ||
+                          widget.input2 == "" ||
+                          widget.input == "") {
                         widget.input = '0';
                         widget.input2 = '0';
                         widget.input3 = '0';
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => homeScreen(input: value.text = '0', input2: value2.text = '0', input3: value3.text = '0')));
-                      }
-                      else {
+                            builder: (context) => homeScreen(
+                                input: value.text = '0',
+                                input2: value2.text = '0',
+                                input3: value3.text = '0')));
+                      } else {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => homeScreen(input: value.text, input2: value2.text, input3: value3.text)));
+                            builder: (context) => homeScreen(
+                                input: value.text,
+                                input2: value2.text,
+                                input3: value3.text)));
                       }
                     },
                     buttonText: "Update Values",
@@ -162,7 +175,7 @@ class _Account extends State<AccountScreen> {
                   CustomButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>  UpdatePasswordScreen()));
+                          builder: (context) => UpdatePasswordScreen()));
                     },
                     buttonText: "Update Password",
                     buttonWidth: 200,
@@ -173,5 +186,5 @@ class _Account extends State<AccountScreen> {
             ),
           ))),
     );
-  } 
+  }
 }
