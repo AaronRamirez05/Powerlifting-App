@@ -69,7 +69,7 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text(widget.input == null ? '0 LB' : '${widget.input} lB',
+                                  Text(widget.input == null || widget.input == '' ? '0 LB' : '${widget.input} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -104,7 +104,7 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text(widget.input2 == null ? '0 LB' : '${widget.input2} lB',
+                                  Text(widget.input2 == null || widget.input2 == '' ? '0 LB' : '${widget.input2} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
@@ -139,7 +139,7 @@ class _home extends State<homeScreen> {
                                           color: Colors.white,
                                           fontSize: 20)),
                                   SizedBox(height: 5),
-                                  Text(widget.input3 == null ? '0 LB' : '${widget.input3} lB',
+                                  Text(widget.input3 == null || widget.input3 == '' ? '0 LB' : '${widget.input3} lB',
                                       style: TextStyle(
                                           fontFamily: 'Open',
                                           color: Colors.red,
