@@ -170,7 +170,6 @@ class _Convert extends State<ConvertScreen> {
                                     value2.clear();
                                   }
                                   pounds = double.parse(value);
-                                  //imagePathway(pounds);
                                   updateWeights(weightsKg);
                                 });
                               },
@@ -179,7 +178,6 @@ class _Convert extends State<ConvertScreen> {
                                   value2.clear();
                                 }
                                 pounds = double.parse(value.text);
-                                //imagePathway(pounds);
                               },
                             )),
                         SizedBox(width: 10),
@@ -211,7 +209,6 @@ class _Convert extends State<ConvertScreen> {
                                       value.clear();
                                     }
                                     pounds = double.parse(value.text);
-                                    //imagePathway(pounds);
                                     updateWeights(double.parse(value2));
                                   });
                                 },
@@ -220,7 +217,6 @@ class _Convert extends State<ConvertScreen> {
                                     value.clear();
                                   }
                                   pounds = double.parse(value.text);
-                                  //imagePathway(pounds);
                                 })),
                         SizedBox(width: 10), 
                         Text("KG",
@@ -228,7 +224,15 @@ class _Convert extends State<ConvertScreen> {
                                 color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))
                       ],
                     ),
-                    SizedBox(height: 80),
+                    SizedBox(height: 30),
+                    Text(pounds == null || pounds == ''
+                    ? 'Weight of Barbell is 0 LB' 
+                    : 'Weight of Barbell is ${displayWeights(pounds)} LB',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                    SizedBox(height: 60),
                     Stack(alignment: Alignment.center, children: [
                       Container(width: 500, height: 25, color: Colors.grey),
                       Row(
@@ -236,7 +240,7 @@ class _Convert extends State<ConvertScreen> {
                           children: containerWeights),
                     ]),
                     SizedBox(height: 20),
-                    Text("*The dumbell bar is 20 kilograms*",
+                    Text("*The barbell is 20 kilograms*",
                             style: TextStyle(
                                 color: Colors.white)),
                   ],
@@ -271,5 +275,37 @@ class _Convert extends State<ConvertScreen> {
       poundsTemp -= numOfWeight * num;
       if (poundsTemp < 0.25) return;
     }
+  }
+
+  double displayWeights(double pounds) {
+    var temp2 = [25, 20, 15, 10, 5, 2.5, 1.25, 0.5, 0.25];
+    var temp3 = pounds / 2.20462;
+    var x = temp3;
+    double display = 0;
+    if (x < 20) {
+      display = 20;
+      return display;
+    }
+    for (var num2 in temp2) {
+      int y = (x / num2).floor();
+      for (var i = 0; i < y; i++) {
+        if (num2 == 25) display+=25;
+        if (num2 == 20) display+=20;
+        if (num2 == 15) display+=15;
+        if (num2 == 10) display+=10;
+        if (num2 == 5) display+=5;
+        if (num2 == 2.5) display+=2.5;
+        if (num2 == 1.25) display+=1.25;
+        if (num2 == 0.5) display+=0.5;
+        if (num2 == 0.25) display+=0.25;
+      }
+      x -= y * num2;
+      if (x < 0.25) {
+        display*=2.20462;
+        display = double.parse((display).toStringAsFixed(3));
+        return display;
+      }
+    }
+    return display;
   }
 }
