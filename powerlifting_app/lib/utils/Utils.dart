@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:powerlifting_app/utils/workouts.dart';
 import 'package:youtube_data_api/models/video_data.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -173,6 +174,32 @@ class RemoteService {
     }
   }
 
+  Future<List<Workouts>?> getWorkouts(String? uid, String programName) async {
+    var client = http.Client();
+
+    var uri = Uri.parse(
+        'http://api.3eam.net/powerlifting/$uid/$programName/workouts');
+    try {
+      var response = await client.get(uri);
+
+      if (response.statusCode == 200) {
+        var json = response.body;
+        print(json);
+        // Parse the JSON and return the result
+        return postFJson(json);
+      } else {
+        // Handle non-200 status codes here
+        print('Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle any exceptions that might occur during the HTTP request
+      print('Error during HTTP request: $e');
+    } finally {
+      // Make sure to close the client to free up resources
+      client.close();
+    }
+  }
+
   Future<bool?> createProgram(String? uid, String Name) async {
     var client = http.Client();
 
@@ -210,13 +237,14 @@ class RemoteService {
       String SRR4,
       String ProgramName) async {
     var client = http.Client();
-
+    int day = 0;
     var uri = Uri.parse('http://api.3eam.net/powerlifting/user/createWorkout');
     try {
+      day = PrintProgram.getDay(Day);
       var response = await client.post(uri,
           headers: {"Content-type": "application/json"},
           body: jsonEncode({
-            "Day": '$Day',
+            "Day": '$day',
             "WorkoutName": '$WorkoutName',
             "SRRWeek1": '$SRR1',
             "SRRWeek2": '$SRR2',
@@ -243,41 +271,34 @@ class RemoteService {
       client.close();
     }
   }
-
-  Stream<List<Post>?> getPostsStream(String? userId) {
-    // Implement your logic to get posts using streams
-    // Replace the following line with your actual implementation
-    // This is just a placeholder.
-    return Stream.fromFuture(getPosts(userId));
-  }
 }
 
 class PrintProgram {
   List<List<String>> Days =
       List.generate(7, (index) => List<String>.filled(7, ""));
 
-  String getDay(int index) {
-    String temp = "";
+  static int getDay(String index) {
+    int temp = 0;
     try {
-      if (index == 0) {
-        temp = "Monday";
-      } else if (index == 1) {
-        temp = "Tuesday";
-      } else if (index == 2) {
-        temp = "Wednesday";
-      } else if (index == 3) {
-        temp = "Thursday";
-      } else if (index == 4) {
-        temp = "Friday";
-      } else if (index == 5) {
-        temp = "Saturday";
-      } else if (index == 6) {
-        temp = "Sunday";
+      if (index == "Monday") {
+        temp = 1;
+      } else if (index == "Tuesday") {
+        temp = 2;
+      } else if (index == "Wednesday") {
+        temp = 3;
+      } else if (index == "Thursday") {
+        temp = 4;
+      } else if (index == "Friday") {
+        temp = 5;
+      } else if (index == "Saturday") {
+        temp = 6;
+      } else if (index == "Sunday") {
+        temp = 7;
       }
 
       return temp;
     } catch (exc) {
-      return exc.toString();
+      return 0;
     }
   }
 }

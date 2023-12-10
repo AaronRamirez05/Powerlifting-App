@@ -137,21 +137,12 @@ class _Program extends State<ProgramScreen> {
                                   progamData.text);
                           textFieldDisplayed = false;
                           interacts = false;
-
-                          //getData();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) =>
+                                      CreateProgramScreen(progamData.text)));
                         });
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) =>
-                                    CreateProgramScreen(progamData.text)));
-
-/*
-                         Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                           builder: (_) => CreateProgramScreen(argument: progamData.text)));
-                           */
                       },
                       icon: Icon(
                         Icons.check,
@@ -203,9 +194,8 @@ class _Program extends State<ProgramScreen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ProgramWorkouts(
-                                                    argument:
-                                                        posts![index].name)));
+                                                ViewProgramScreen(
+                                                    posts![index].name)));
                                   },
                                   child: Row(children: <Widget>[
                                     SizedBox(
