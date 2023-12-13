@@ -7,7 +7,6 @@ import 'package:powerlifting_app/screens/Login Screen/auth_page.dart';
 import 'package:powerlifting_app/utils/Utils.dart';
 import 'package:powerlifting_app/screens/Login Screen/verify_page.dart';
 
-
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
