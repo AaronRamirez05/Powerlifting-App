@@ -45,7 +45,6 @@ class _home extends State<homeScreen> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 40),
-                Text(user.email!, style: TextStyle(color: Colors.red)),
                 Container(
                     height: 105,
                     width: 300,
@@ -172,18 +171,6 @@ class _home extends State<homeScreen> {
                         ),
                       ],
                     )),
-                //TESTINGGGGG
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: ((context) => CreateProgramScreen("dfdf"))));
-                    },
-                    child: Text(
-                      'asdfadf',
-                      key: Key('asdf'),
-                      style: TextStyle(color: Colors.white, fontFamily: 'Open'),
-                    )),
-
                 SizedBox(height: 60),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
